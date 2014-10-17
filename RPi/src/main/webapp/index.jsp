@@ -4,10 +4,11 @@
 <html>
 <head>
 		
-	<script type="text/javascript" src="BootstrapMetro/js/metro-dropdown.js"></script>
-        <link rel="stylesheet" href="BootstrapMetro/css/metro-bootstrap.css">
+        <link rel="stylesheet" href="BootstrapMetro/docs/css/metro-bootstrap.css">
+        <script src="BootstrapMetro/docs/js/jquery/jquery.min.js"></script>
+        <script src="BootstrapMetro/docs/js/jquery/jquery.widget.min.js"></script>
+        <script src="BootstrapMetro/min/metro.min.js"></script>
         <link rel="shortcut icon" href="images/remote_control.ico" />
-  	  	<link href="BootstrapMetro/css/metro-bootstrap-responsive.css" rel="stylesheet">
 	
 	    <!-- Metro UI CSS JavaScript plugins -->
 	    
