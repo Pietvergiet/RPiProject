@@ -18,28 +18,22 @@
 
 <div class="navigation-bar dark fixed-top shadow">
         <ul class="element-menu">
-            <li>
-                <a class="dropdown-toggle" href="#">Base CSS</a>
+        	<li><a href="/RPi">Home</a></li>
+        	<li>
+                <a class="dropdown-toggle" href="#Options">Options</a>
                 <ul class="dropdown-menu dark" data-role="dropdown" style="display: none;">
-                    <li><a href="requirements.html">Requirements</a></li>
-                    <li>
-                        <a href="#" class="dropdown-toggle">General CSS</a>
-                        <ul class="dropdown-menu dark" data-role="dropdown">
-                            <li><a href="global.html">Global styles</a></li>
-                            <li><a href="grid.html">Grid system</a></li>
-                            <div class="divider"></div>
-                            <li><a href="typography.html">Typography</a></li>
-                            <li><a href="tables.html">Tables</a></li>
-                            <li><a href="forms.html">Forms</a></li>
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="images.html">Images</a></li>
-                        </ul>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="responsive.html">Responsive</a></li>
-                    <li class="disabled"><a href="layouts.html">Layouts and templates</a></li>
-                    <li class="divider"></li>
-                    <li><a href="icons.html">Icons</a></li>
+                    <li><a href="#Add">Add a device</a></li>
+                    <li><a href="#Remove">Remove a device</a></li>
+                    <li><a href="#Edit">Edit a device</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#Devices">Devices</a>
+                <ul class="dropdown-menu dark" data-role="dropdown" style="display: none;">
+                    <li><a href="#Tv">Tv</a></li>
+                    <li><a href="#DVD">DVD</a></li>
+                    <li><a href="#Radio">Radio</a></li>
+                    <li><a href="#Secret Device">Nothing</a></li>
                 </ul>
             </li>
     	</ul>
