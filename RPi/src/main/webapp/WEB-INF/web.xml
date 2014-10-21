@@ -15,5 +15,13 @@
 	<servlet>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
 	</servlet>
+	<servlet>
+		<servlet-name>Devices</servlet-name>
+		<jsp-file>/Devices.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Devices</servlet-name>
+		<url-pattern>/Devices</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

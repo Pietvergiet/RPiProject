@@ -19,25 +19,25 @@ import com.pi4j.io.gpio.RaspiPin;
 @SuppressWarnings("serial")
 public class Blink extends HttpServlet{
 
-	GpioController gpio = GpioFactory.getInstance();
+	/*GpioController gpio = GpioFactory.getInstance();
 	GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00,   // PIN NUMBER
 			"My LED",           // PIN FRIENDLY NAME (optional)
 			PinState.LOW);
-	boolean repeat = false;
+	boolean repeat = false;*/
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL("./")); 
 		System.out.println("hij doet iets");
-		for (int i =0; i < 10;i++) {
+		/*for (int i =0; i < 10;i++) {
 			myLed.toggle();
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException ie) {
 			}
 		}
-		myLed.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		myLed.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);*/
 		rd.include(request, response);
 
 

@@ -37,12 +37,21 @@
     	</ul>
     </nav>	
 </nav>
-
-<!-- Body -->
-<div>
-		<form method="post" action="Blink">
-			<input class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT" style="font-size:40px; height:200px; width:600px;">
-		</form>
+<br>
+<br><br>
+<div class="grid">
+    <div class="row" >
+        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+        <div class="span2"><button style="height:150px; width:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+        <div class="span3"><button style="height:150px; width:200px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+       	<div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+    </div>
 </div>
+
 </body>
 </html>
