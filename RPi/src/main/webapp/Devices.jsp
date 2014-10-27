@@ -8,13 +8,11 @@
         <script src="BootstrapMetro/docs/js/jquery/jquery.min.js"></script>
         <script src="BootstrapMetro/docs/js/jquery/jquery.widget.min.js"></script>
         <script src="BootstrapMetro/min/metro.min.js"></script>
-        <link rel="shortcut icon" href="images/remote_control.ico" />
-	
-	    <!-- Metro UI CSS JavaScript plugins -->
-	    
+        <link rel="shortcut icon" href="images/remote_control.ico" />	    
 
 </head>
 <body class="metro">
+
 <!-- Header -->
 <nav class="navigation-bar dark fixed-top shadow">
 	<nav class="navigation-bar-content">
@@ -37,20 +35,24 @@
     	</ul>
     </nav>	
 </nav>
-<br>
-<br><br>
-<div class="grid">
-    <div class="row" >
-        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
-        <div class="span2"><button style="height:150px; width:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
-        <div class="span3"><button style="height:150px; width:200px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
-        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
-        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
-       	<div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
-        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
-        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
-        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+
+<!-- Body -->
+<div style="margin-left:20px;margin-top:60px">
+
+	<div class="grid">
+	    <div class="row" >
+	        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+	        <div class="span2"><button style="height:150px; width:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+	        <div class="span3"><button style="height:150px; width:200px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+	        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+	        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+	       	<div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+	        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+	        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+	        <div class="span1"><button style="height:150px" class="bg-green fg-white bg-hover-lime">hoi</button></div>
+	    </div>
     </div>
+    
 </div>
 
 </body>

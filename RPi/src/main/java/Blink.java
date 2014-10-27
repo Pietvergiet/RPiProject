@@ -28,8 +28,7 @@ public class Blink extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		response.setContentType("text/html;charset=UTF-8");
-		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL("./")); 
-		System.out.println("hij doet iets");
+		System.out.println("hij doet iets" + request.getParameter("button"));
 		/*for (int i =0; i < 10;i++) {
 			myLed.toggle();
 			try {
@@ -38,7 +37,7 @@ public class Blink extends HttpServlet{
 			}
 		}
 		myLed.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);*/
-		rd.include(request, response);
+		response.sendRedirect(response.encodeURL(request.getHeader("Referer")));
 
 
 	}

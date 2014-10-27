@@ -16,7 +16,7 @@
 </head>
 <body class="metro">
 <!-- Header -->
-<nav class="navigation-bar dark fixed-top shadow">
+<nav class="navigation-bar dark fixed-top">
 	<nav class="navigation-bar-content">
         <ul class="element-menu">
         	<li><a href="/RPi">Home</a></li>
@@ -39,10 +39,13 @@
 </nav>
 
 <!-- Body -->
-<div>
-		<form method="post" action="Blink">
-			<input class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT" style="font-size:40px; height:200px; width:600px;">
-		</form>
+<div class="grid" style="margin-left:20px;margin-top:60px">
+	
+	<form method="post" action="Blink">
+		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT1" style="font-size:40px; height:200px; width:600px;">
+		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT2" style="font-size:40px; height:200px; width:600px;">
+	</form>
+
 </div>
 </body>
 </html>
