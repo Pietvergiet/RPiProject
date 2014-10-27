@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 
 @WebServlet("/Action")
@@ -18,7 +19,10 @@ public class Action {
 		System.out.println("AcIONTTTT!!");
 		GPIOInit gpio = new GPIOInit();
 		Object pins[] = gpio.Init();
-		
+		GpioPinDigitalOutput send = (GpioPinDigitalOutput) pins[0];
+		GpioPinDigitalInput ack = (GpioPinDigitalInput) pins[1];
+		GpioPinDigitalOutput data[] = (GpioPinDigitalOutput[]) pins[2];
+		GpioPinDigitalOutput par = (GpioPinDigitalOutput) pins[3];
 		response.sendRedirect(response.encodeURL(request.getHeader("Referer")));
 	}
 }

@@ -9,8 +9,6 @@
         <script src="BootstrapMetro/docs/js/jquery/jquery.widget.min.js"></script>
         <script src="BootstrapMetro/min/metro.min.js"></script>
         <link rel="shortcut icon" href="images/remote_control.ico" />
-	
-	    <!-- Metro UI CSS JavaScript plugins -->
 	    
 
 </head>
