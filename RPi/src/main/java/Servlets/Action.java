@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,41 +26,46 @@ public class Action extends HttpServlet{
 			GPIO.setAction();
 			GPIO.setList();
 			GPIO.setStable();
-			GPIO.waitAck();
-			//TODO doe iets met input 
+			GPIO.waitAck_Stable();
+			GPIO.pSetupRecieve();
+			GPIO.waitAck_Stable();
+			int length = GPIO.getIntInput();
+			HashMap<Integer, String> lijst = GPIO.getList(length);
+			//TODO doe iets met lijst
+			GPIO.pSetupSend();
 		} else if (action.equals("Remove")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setRemove();
 			GPIO.setStable();
-			GPIO.waitAck();
+			GPIO.waitAck_Stable();
 			//TODO geef action nr mee
 			GPIO.setStable();
-			GPIO.waitAck();
+			GPIO.waitAck_Stable();
 		} else if (action.equals("Record")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setAdd();
 			GPIO.setStable();
-			GPIO.waitAck();
+			GPIO.waitAck_Stable();
 			//TODO geef device id mee
 			GPIO.setStable();
-			GPIO.waitAck();
+			GPIO.waitAck_Stable();
 			//TODO geef action name mee
 			GPIO.setStable();
-			GPIO.waitAck();
+			GPIO.waitAck_Stable();
 		} else if (action.equals("Execute")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setExecute();
 			GPIO.setStable();
-			GPIO.waitAck();
+			GPIO.waitAck_Stable();
 			//TODO geef action id mee
 			GPIO.setStable();
-			GPIO.waitAck();
+			GPIO.waitAck_Stable();
 		} else {
 			System.out.println("PANIEK PANIEK PANIEK ER IS IETS OF IEMAND FOUT BEZIGN OMG OMG OMG ABORT ABORT ABORT");
 		}

@@ -1,5 +1,7 @@
 package Gpio;
 
+import java.util.HashMap;
+
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
@@ -17,8 +19,8 @@ public class GPIO {
 	public static final GpioController gpio = GpioFactory.getInstance();
 	public static final GpioPinDigitalMultipurpose pin[] = { 
 		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_00, "Send", PinMode.DIGITAL_OUTPUT, PinPullResistance.PULL_DOWN),
-		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_01, "Stable(out)/Ack(in)", PinMode.DIGITAL_OUTPUT, PinPullResistance.PULL_DOWN),
-		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_02, "Ack(out)/Stable(in)", PinMode.DIGITAL_INPUT, PinPullResistance.PULL_DOWN),
+		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_01, "Stable(out)/Ack(out)", PinMode.DIGITAL_OUTPUT, PinPullResistance.PULL_DOWN),
+		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_02, "Ack(in)/Stable(in)", PinMode.DIGITAL_INPUT, PinPullResistance.PULL_DOWN),
 		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_03, "Data", PinMode.DIGITAL_OUTPUT, PinPullResistance.PULL_DOWN),
 		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_04, "Data", PinMode.DIGITAL_OUTPUT, PinPullResistance.PULL_DOWN),
 		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_05, "Data", PinMode.DIGITAL_OUTPUT, PinPullResistance.PULL_DOWN),
@@ -36,8 +38,6 @@ public class GPIO {
 
 	public static void pSetupSend() {
 		send = true;
-		pin[1].setMode(PinMode.DIGITAL_INPUT);
-		pin[2].setMode(PinMode.DIGITAL_OUTPUT);
 		for (int i = 3; i < 11; i++) {
 			pin[i].setMode(PinMode.DIGITAL_OUTPUT);
 		}
@@ -45,8 +45,6 @@ public class GPIO {
 
 	public static void pSetupRecieve() {
 		send = false;
-		pin[1].setMode(PinMode.DIGITAL_OUTPUT);
-		pin[2].setMode(PinMode.DIGITAL_INPUT);
 		for (int i = 3; i < 11; i++) {
 			pin[i].setMode(PinMode.DIGITAL_INPUT);
 		}
@@ -233,28 +231,58 @@ public class GPIO {
 		}
 	}
 	
-	public static void waitAck() {
+	public static void waitAck_Stable() {
 		while (pin[1].isLow()) {
 			int t = 0;
 		}
 	}
+	
+	public static HashMap<Integer,String> getList(int length) {
+		HashMap<Integer, String> list = new HashMap<Integer, String>();
+		for(int i = 0; i < length; i++) {
+			StringBuilder name = new StringBuilder();
+			int nr;
+			waitAck_Stable();
+			nr = getIntInput();
+			for (int j = 0; j < 16; j++) {
+				waitAck_Stable();
+				name.append(getCharInput());
+			}
+			list.put(nr, name.toString());
+		}
+		
+		return list;
+	}
+	
+	public static int getIntInput() {
+		boolean[] input = new boolean[8];
+		int n = 0;
+		for (int i = 3; i < 11; i++) {
+			input[i-3] = pin[i].isHigh();
+		}
+		for (int i = 0; i < 8; ++i) {
+		    n = (n << 1) + (input[i] ? 1 : 0);
+		}
+		return n;
+	}
+	
+	public static char getCharInput() {
+		int n = getIntInput();
+		char ch = (char) n;
+		return ch;
+	}
 
 	public static void main(String[] arg) {
+		
+		//Sending Data
+		//When ack pin is receiving a 1 turn stable pin off
 		pin[2].addListener(new GpioPinListenerDigital() {
 
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
 				if (send && event.getState() == PinState.HIGH && pin[1].isHigh()) {
 					pin[1].low();
-				}
-			}            
-		});
-		
-		pin[1].addListener(new GpioPinListenerDigital() {
-
-			@Override
-			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				if (send && event.getState() == PinState.HIGH && pin[1].isHigh()) {
+				} else if (!send && event.getState() == PinState.LOW) {
 					pin[1].low();
 				}
 			}            
