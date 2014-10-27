@@ -38,14 +38,19 @@
 
 <!-- Body -->
 <div class="grid" style="margin-left:20px;margin-top:60px">
-	
-	<form method="post" action="doAction">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="List" style="font-size:40px; height:200px; width:600px;">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="Remove" style="font-size:40px; height:200px; width:600px;">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="Add" style="font-size:40px; height:200px; width:600px;">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="Execute" style="font-size:40px; height:200px; width:600px;">
-	</form>
-	
+	<div class="grid">
+	    
+		<form method="post" action="doAction">
+			<div class="row" >
+				<div class="span4"><input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="List" style="font-size:40px; height:200px; width:300px;"></div>
+				<div class="span4"><input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="Remove" style="font-size:40px; height:200px; width:300px;"></div>
+			</div>
+			<div class="row">	
+				<div class="span4"><input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="Record" style="font-size:40px; height:200px; width:300px;"></div>
+				<div class="span4"><input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="Execute" style="font-size:40px; height:200px; width:300px;"></div>
+			</div>		
+		</form>
+	</div>
 </div>
 </body>
 </html>
