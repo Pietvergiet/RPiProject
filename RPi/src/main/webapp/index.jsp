@@ -9,7 +9,7 @@
         <script src="BootstrapMetro/docs/js/jquery/jquery.widget.min.js"></script>
         <script src="BootstrapMetro/min/metro.min.js"></script>
         <link rel="shortcut icon" href="images/remote_control.ico" />
-	    
+	    <title>SuperRemotely</title>
 
 </head>
 <body class="metro">
@@ -19,7 +19,7 @@
         <ul class="element-menu">
         	<li><a href="/RPi">Home</a></li>
         	<li><a href="./Devices">Devices</a></li>
-        	<li><a href="#Actions">Actions</a></li>
+        	<li><a href="./Action">Actions</a></li>
         	<li><a href="#Sequence">Sequences</a></li>
         	<li><a href="#Alarm">Alarm</a></li>
         	<li>
