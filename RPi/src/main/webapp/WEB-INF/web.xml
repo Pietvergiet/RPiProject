@@ -23,6 +23,14 @@
 		<servlet-name>Action</servlet-name>
 		<jsp-file>/Action.jsp</jsp-file>
 	</servlet>
+	<servlet>
+		<servlet-name>Sequence</servlet-name>
+		<jsp-file>/Sequence.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Sequence</servlet-name>
+		<url-pattern>/Sequence</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Action</servlet-name>
 		<url-pattern>/Action</url-pattern>

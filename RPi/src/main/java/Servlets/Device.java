@@ -18,9 +18,9 @@ public class Device extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
 		System.out.println("AcIONTTTT!!");
-		GPIO.setUnstable();
+		//GPIO.setUnstable();
 		String action = (String) request.getParameter("button");
-		if (action.equals("List")) {
+		if (action.contains("List")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setDevice();
@@ -30,8 +30,10 @@ public class Device extends HttpServlet{
 			GPIO.pSetupRecieve();
 			GPIO.waitAck_Stable();
 			int length = GPIO.getIntInput();
+			GPIO.setStable();
 			HashMap<Integer, String> lijst = GPIO.getList(length);
 			//TODO doe iets met lijst
+			GPIO.pSetupSend();
 		} else if (action.equals("Remove")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
@@ -39,18 +41,17 @@ public class Device extends HttpServlet{
 			GPIO.setRemove();
 			GPIO.setStable();
 			GPIO.waitAck_Stable();
-			//TODO geef device id mee
-			GPIO.setStable();
-			GPIO.waitAck_Stable();
+			int devID = Integer.parseInt(request.getParameter("remDev"));
+			int dId[] = {devID};
+			GPIO.sendInts(dId);
 		} else if (action.equals("Add")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setDevice();
 			GPIO.setAdd();
 			GPIO.setStable();
-			//TODO geef device name mee
-			GPIO.setStable();
-			GPIO.waitAck_Stable();
+			String devName = request.getParameter("addDev");
+			GPIO.sendInts(GPIO.turnStringtoInt(devName));
 		} else {
 			System.out.println("PANIEK PANIEK PANIEK ER IS IETS OF IEMAND FOUT BEZIGN OMG OMG OMG ABORT ABORT ABORT");
 		}

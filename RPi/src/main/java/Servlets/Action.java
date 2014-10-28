@@ -20,7 +20,7 @@ public class Action extends HttpServlet{
 		System.out.println("AcIONTTTT!!");
 		GPIO.setUnstable();
 		String action = (String) request.getParameter("button");
-		if (action.equals("List")) {
+		if (action.contains("List")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
@@ -40,9 +40,8 @@ public class Action extends HttpServlet{
 			GPIO.setRemove();
 			GPIO.setStable();
 			GPIO.waitAck_Stable();
-			//TODO geef action nr mee
-			GPIO.setStable();
-			GPIO.waitAck_Stable();
+			String actId = request.getParameter("actId");
+			GPIO.sendInts(GPIO.turnStringtoInt(actId));
 		} else if (action.equals("Record")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
@@ -50,12 +49,11 @@ public class Action extends HttpServlet{
 			GPIO.setAdd();
 			GPIO.setStable();
 			GPIO.waitAck_Stable();
-			//TODO geef device id mee
-			GPIO.setStable();
-			GPIO.waitAck_Stable();
-			//TODO geef action name mee
-			GPIO.setStable();
-			GPIO.waitAck_Stable();
+			int newId = Integer.parseInt(request.getParameter("nActId"));
+			int nId[] = {newId};
+			String newName = request.getParameter("nActNam");
+			GPIO.sendInts(nId);
+			GPIO.sendInts(GPIO.turnStringtoInt(newName));
 		} else if (action.equals("Execute")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
@@ -63,9 +61,9 @@ public class Action extends HttpServlet{
 			GPIO.setExecute();
 			GPIO.setStable();
 			GPIO.waitAck_Stable();
-			//TODO geef action id mee
-			GPIO.setStable();
-			GPIO.waitAck_Stable();
+			int exeId = Integer.parseInt(request.getParameter("actIdexe"));
+			int eId[] = {exeId};
+			GPIO.sendInts(eId);
 		} else {
 			System.out.println("PANIEK PANIEK PANIEK ER IS IETS OF IEMAND FOUT BEZIGN OMG OMG OMG ABORT ABORT ABORT");
 		}

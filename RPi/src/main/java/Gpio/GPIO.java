@@ -237,6 +237,38 @@ public class GPIO {
 		}
 	}
 	
+	public static void sendInts(int[] chars) {
+		for(int i = 0; i < chars.length; i++) {
+			setUnstable();
+			boolean stand[] = intToBool(chars[i]);
+			for(int j = 0; j < stand.length; j++) {
+				if(stand[j]) {
+					pin[j].high();
+				} else {
+					pin[j].low();
+				}
+				
+			}
+			setStable();
+			waitAck_Stable();
+		}
+	}
+	
+	public static boolean[] intToBool(int cijfer) {
+		if (cijfer > 255 && cijfer >= 0){
+			return null;
+		} else {
+			int input = cijfer;
+
+		    boolean[] bits = new boolean[8];
+		    for (int i = 7; i >= 0; i--) {
+		        bits[i] = (input & (1 << i)) != 0;
+		    }
+		    
+		    return bits;
+		}
+	}
+	
 	public static HashMap<Integer,String> getList(int length) {
 		HashMap<Integer, String> list = new HashMap<Integer, String>();
 		for(int i = 0; i < length; i++) {
@@ -244,13 +276,40 @@ public class GPIO {
 			int nr;
 			waitAck_Stable();
 			nr = getIntInput();
+			setStable();
 			for (int j = 0; j < 16; j++) {
 				waitAck_Stable();
 				name.append(getCharInput());
+				setStable();
 			}
 			list.put(nr, name.toString());
 		}
 		
+		return list;
+	}
+	
+	public static HashMap<Integer, HashMap<Integer, String>> getActionList(int length) {
+		HashMap<Integer, HashMap<Integer, String>> list = new HashMap<Integer, HashMap<Integer, String>>();
+		HashMap<Integer, String> action = new HashMap<Integer, String>();
+		for(int i = 0; i < length; i++) {
+			action.clear();
+			int nr;
+			int id;
+			StringBuilder name = new StringBuilder();
+			waitAck_Stable();
+			nr = getIntInput();
+			setStable();
+			waitAck_Stable();
+			id = getIntInput();
+			setStable();
+			for (int j = 0; j < 16; j++) {
+				waitAck_Stable();
+				name.append(getCharInput());
+				setStable();
+			}
+			action.put(id, name.toString());
+			list.put(nr, action);
+		}
 		return list;
 	}
 	
@@ -270,6 +329,16 @@ public class GPIO {
 		int n = getIntInput();
 		char ch = (char) n;
 		return ch;
+	}
+	
+	public static int[] turnStringtoInt(String string) {
+		StringBuilder chars = new StringBuilder(string);
+		int[] ints = new int[chars.length()];
+		for (int i = 0; i < chars.length(); i++) {
+			ints[i] = (int) chars.charAt(i);
+		}
+		
+		return ints;
 	}
 
 	public static void main(String[] arg) {
