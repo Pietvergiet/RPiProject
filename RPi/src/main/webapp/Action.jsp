@@ -21,7 +21,7 @@
         	<li><a href="./Devices">Devices</a></li>
         	<li><a href="./Action">Actions</a></li>
         	<li><a href="./Sequence">Sequences</a></li>
-        	<li><a href="#Alarm">Alarm</a></li>
+        	<li><a href="./Alarm">Alarm</a></li>
         	<li>
                 <a class="dropdown-toggle" href="#Options">Options</a>
                 <ul class="dropdown-menu dark" data-role="dropdown" style="display: none;">

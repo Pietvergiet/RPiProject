@@ -27,6 +27,14 @@
 		<servlet-name>Sequence</servlet-name>
 		<jsp-file>/Sequence.jsp</jsp-file>
 	</servlet>
+	<servlet>
+		<servlet-name>Alarm</servlet-name>
+		<jsp-file>/Alarm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Alarm</servlet-name>
+		<url-pattern>/Alarm</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Sequence</servlet-name>
 		<url-pattern>/Sequence</url-pattern>

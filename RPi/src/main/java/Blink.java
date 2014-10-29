@@ -18,6 +18,8 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
+import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 
 @WebServlet("/Blink")
@@ -27,22 +29,25 @@ public class Blink extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		response.setContentType("text/html;charset=UTF-8");
-		GPIO.setUnstable();
+		/*GPIO.setUnstable_Ack();
 		/*GPIO.setSeq();
 		GPIO.setSeqRemAct();
 		GPIO.setStable();
-		GPIO.waitAck_Stable();*/
+		GPIO.waitAck_Stable();
 		GPIO.sendInts(GPIO.turnStringtoInt("@"));
 		GPIO.pSetupRecieve();
 		GPIO.waitAck_Stable();
 		int i = GPIO.getIntInput();
-		GPIO.pin[2].high();
+		GPIO.pin[1].high();
 		boolean bool[] = GPIO.intToBool(i);
-		String s = Arrays.toString(bool);
-		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp"); 
+		String s = Arrays.toString(bool);*/
+		String t = "Hallo";
+		RequestDispatcher rd = request.getRequestDispatcher("/"); 
 		PrintWriter out= response.getWriter();
-		out.println("<br><br><br><br><br><br><br>Hallo");
-		out.println(s);
+		out.println("<script type=\"text/javascript\">");
+		out.println("alert('" + t + "');");
+		out.println("window.open('', '_parent');");
+		out.println("</script>");
 		
 
 		rd.include(request, response);

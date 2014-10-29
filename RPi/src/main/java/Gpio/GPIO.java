@@ -38,6 +38,7 @@ public class GPIO {
 
 	public static void pSetupSend() {
 		send = true;
+		pin[0].low();
 		for (int i = 3; i < 11; i++) {
 			pin[i].setMode(PinMode.DIGITAL_OUTPUT);
 		}
@@ -45,18 +46,19 @@ public class GPIO {
 
 	public static void pSetupRecieve() {
 		send = false;
+		pin[0].high();
 		for (int i = 3; i < 11; i++) {
 			pin[i].setMode(PinMode.DIGITAL_INPUT);
 		}
 	}
 
-	public static void setStable() {
+	public static void setStable_Ack() {
 		if (send){
 			pin[1].high();
 		}
 	}
 
-	public static void setUnstable() {
+	public static void setUnstable_Ack() {
 		if (send) {
 			pin[1].low();
 		}
@@ -64,7 +66,7 @@ public class GPIO {
 
 	public static void setDevice() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[3].low();
 			pin[4].low();
 			pin[5].low();
@@ -74,7 +76,7 @@ public class GPIO {
 
 	public static void setAction() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[3].low();
 			pin[4].low();
 			pin[5].high();
@@ -84,7 +86,7 @@ public class GPIO {
 
 	public static void setSeq() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[3].low();
 			pin[4].low();
 			pin[5].high();
@@ -94,7 +96,7 @@ public class GPIO {
 
 	public static void setAlarm() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[3].low();
 			pin[4].high();
 			pin[5].low();
@@ -104,7 +106,7 @@ public class GPIO {
 
 	public static void setList() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[7].low();
 			pin[8].low();
 			pin[9].low();
@@ -114,7 +116,7 @@ public class GPIO {
 
 	public static void setRemove() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[7].low();
 			pin[8].low();
 			pin[9].high();
@@ -124,7 +126,7 @@ public class GPIO {
 
 	public static void setAdd() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[7].low();
 			pin[8].high();
 			pin[9].low();
@@ -134,7 +136,7 @@ public class GPIO {
 
 	public static void setExecute() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[7].low();
 			pin[8].high();
 			pin[9].high();
@@ -144,7 +146,7 @@ public class GPIO {
 
 	public static void setSeqListAct() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			setSeq();
 			pin[7].low();
 			pin[8].low();
@@ -155,7 +157,7 @@ public class GPIO {
 
 	public static void setSeqRemAct() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			setSeq();
 			pin[7].low();
 			pin[8].low();
@@ -166,7 +168,7 @@ public class GPIO {
 
 	public static void setSeqAddAct() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			setSeq();
 			pin[7].low();
 			pin[8].high();
@@ -177,7 +179,7 @@ public class GPIO {
 
 	public static void setTimeSet() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[3].low();
 			pin[4].high();
 			pin[5].low();
@@ -191,7 +193,7 @@ public class GPIO {
 
 	public static void setLinkSeq() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[3].low();
 			pin[4].high();
 			pin[5].low();
@@ -205,7 +207,7 @@ public class GPIO {
 
 	public static void setPassGet() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[3].low();
 			pin[4].high();
 			pin[5].high();
@@ -219,7 +221,7 @@ public class GPIO {
 
 	public static void setPassSet() {
 		if (send) {
-			setUnstable();
+			setUnstable_Ack();
 			pin[3].low();
 			pin[4].high();
 			pin[5].high();
@@ -231,25 +233,45 @@ public class GPIO {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	public static void waitAck_Stable() {
-		while (pin[1].isLow()) {
-			int t = 0;
+		if(send) {
+			while (pin[2].isLow()) {
+				int t = 0;
+			}
+			pin[1].low();
+		} else {
+			while (pin[2].isLow()) {
+				int q = 0;
+			}	
+					
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	public static void sendAck() {
+		if (!send && pin[2].isHigh()) {
+			setStable_Ack();
+			while(pin[2].isHigh()) {
+				int t = 0;
+			}
+			setUnstable_Ack();
 		}
 	}
 	
 	public static void sendInts(int[] chars) {
 		for(int i = 0; i < chars.length; i++) {
-			setUnstable();
+			setUnstable_Ack();
 			boolean stand[] = intToBool(chars[i]);
 			for(int j = 0; j < stand.length; j++) {
 				if(stand[j]) {
-					pin[j].high();
+					pin[j+3].high();
 				} else {
-					pin[j].low();
+					pin[j+3].low();
 				}
 				
 			}
-			setStable();
+			setStable_Ack();
 			waitAck_Stable();
 		}
 	}
@@ -269,60 +291,105 @@ public class GPIO {
 		}
 	}
 	
-	public static HashMap<Integer,String> getList(int length) {
+	public static HashMap<Integer,String> getList() {
 		HashMap<Integer, String> list = new HashMap<Integer, String>();
-		for(int i = 0; i < length; i++) {
+		for(;;) {
 			StringBuilder name = new StringBuilder();
 			int nr;
 			waitAck_Stable();
+			if (checkZByte()) {
+				return list;
+			}
 			nr = getIntInput();
-			setStable();
+			sendAck();
 			for (int j = 0; j < 16; j++) {
 				waitAck_Stable();
 				name.append(getCharInput());
-				setStable();
+				sendAck();
 			}
 			list.put(nr, name.toString());
 		}
 		
-		return list;
 	}
 	
-	public static HashMap<Integer, HashMap<Integer, String>> getActionList(int length) {
+	public static HashMap<Integer, HashMap<Integer, String>> getActionList() {
 		HashMap<Integer, HashMap<Integer, String>> list = new HashMap<Integer, HashMap<Integer, String>>();
 		HashMap<Integer, String> action = new HashMap<Integer, String>();
-		for(int i = 0; i < length; i++) {
+		for(;;) {
 			action.clear();
 			int nr;
 			int id;
 			StringBuilder name = new StringBuilder();
 			waitAck_Stable();
+			if(checkZByte()) {
+				return list;
+			}
 			nr = getIntInput();
-			setStable();
+			sendAck();
 			waitAck_Stable();
 			id = getIntInput();
-			setStable();
+			sendAck();
 			for (int j = 0; j < 16; j++) {
 				waitAck_Stable();
 				name.append(getCharInput());
-				setStable();
+				sendAck();
 			}
 			action.put(id, name.toString());
 			list.put(nr, action);
 		}
-		return list;
+	}
+	
+	public static HashMap<Integer, Object[]> getAlarmList() {
+		HashMap<Integer, Object[]> list = new HashMap<Integer, Object[]>();
+		for(;;) {
+			int alID;
+			long time = 0;
+			int actID;
+			StringBuilder name = new StringBuilder();
+			waitAck_Stable();
+			if (checkZByte()) {
+				return list;
+			}
+			alID = getIntInput();
+			sendAck();
+			//TODO tijd opvangen
+			waitAck_Stable();
+			actID = getIntInput();
+			sendAck();
+			for (int j = 0; j < 16; j++) {
+				waitAck_Stable();
+				name.append(getCharInput());
+				sendAck();
+			}
+			Object alarm[] = {time, actID, name.toString()};
+			list.put(alID, alarm);
+		}
 	}
 	
 	public static int getIntInput() {
 		boolean[] input = new boolean[8];
 		int n = 0;
-		for (int i = 3; i < 11; i++) {
-			input[i-3] = pin[i].isHigh();
+		for (int i = 10; i > 2; i--) {
+			input[10-i] = pin[i].isHigh();
 		}
 		for (int i = 0; i < 8; ++i) {
 		    n = (n << 1) + (input[i] ? 1 : 0);
 		}
 		return n;
+	}
+	
+	public static String getSucces() {
+		if(getIntInput() == 0) {
+			return "Failure: either what you are trying to do is impossible or something else.";
+		} else if (getIntInput() == 255) {
+			return "Succes!";
+		} else {
+			return "Something happen but we are not sure what. Might be a fault on our side might be polar bears who knows.";
+		}
+	}
+	
+	public static boolean checkZByte() {
+		return getIntInput() == 0;
 	}
 	
 	public static char getCharInput() {
@@ -350,6 +417,7 @@ public class GPIO {
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
 				if (send && event.getState() == PinState.HIGH && pin[1].isHigh()) {
+					System.out.println("stabel pin is out");
 					pin[1].low();
 				} else if (!send && event.getState() == PinState.LOW) {
 					pin[1].low();

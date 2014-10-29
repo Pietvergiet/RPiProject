@@ -8,13 +8,13 @@
         <script src="BootstrapMetro/docs/js/jquery/jquery.min.js"></script>
         <script src="BootstrapMetro/docs/js/jquery/jquery.widget.min.js"></script>
         <script src="BootstrapMetro/min/metro.min.js"></script>
-        <link rel="shortcut icon" href="images/remote_control.ico" />	    
-		<title>SuperRemotely</title>
+        <link rel="shortcut icon" href="images/remote_control.ico" />
+	    <title>SuperRemotely</title>
+
 </head>
 <body class="metro">
-<div class="container">
 <!-- Header -->
-<nav class="navigation-bar dark fixed-top shadow">
+<nav class="navigation-bar dark fixed-top">
 	<nav class="navigation-bar-content">
         <ul class="element-menu">
         	<li><a href="/RPi">Home</a></li>
@@ -37,14 +37,13 @@
 </nav>
 
 <!-- Body -->
-<div style="margin-left:20px;margin-top:60px">
-
+<div class="grid" style="margin-left:20px;margin-top:60px">
 	<div class="grid">
 	    
-		<form method="post" action="getDevice">
+		<form method="post" action="getAlarm">
 			<div class="row" >
 				<div class="span5">
-					<input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List all devices			" style="font-size:20px; height:45px; width:300px;">
+					<input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List all alarms			" style="font-size:20px; height:45px; width:300px;">
 				</div>	
 			</div>
 			<div class="row">	
@@ -54,8 +53,8 @@
 					<div class="accordion-frame" style="font-size:20px;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove a device</a>
        	 				<div class="content" style="display: none;">
-        					<p>Fill in the ID of the device <br>that should be removed.<p>
-        					<p><input name="remDev" type="text" data-state="info"></p>
+        					<p>Fill in the ID of the alarm that should be removed.<p>
+        					<p><input name="alId" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove" style="font-size:15px; height:50px; width:175px;"></p>
         				</div>
 					</div>
@@ -67,8 +66,10 @@
 					<div class="accordion-frame" style="font-size:20px;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add a device</a>
        	 				<div class="content" style="display: none;">
-       	 					<p>Fill in the name of the device <br>that should be added.<p>
-        					<p><input name="addDev" type="text" data-state="info"></p>
+       	 					<p>Fill in the time.<p>
+        					<p><input name="time" type="text" data-state="info"></p>
+        					<p>Fill in the ID of the sequence that should execute.<p>
+        					<p><input name="seqId" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add" style="font-size:15px; height:50px; width:175px;"></p>
         				</div>
 					</div>
@@ -76,7 +77,6 @@
 			</div>		
 		</form>
 	</div>
-</div>
 </div>
 </body>
 </html>

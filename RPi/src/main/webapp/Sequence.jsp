@@ -21,7 +21,7 @@
         	<li><a href="./Devices">Devices</a></li>
         	<li><a href="./Action">Actions</a></li>
         	<li><a href="./Sequence">Sequences</a></li>
-        	<li><a href="#Alarm">Alarm</a></li>
+        	<li><a href="./Alarm">Alarm</a></li>
         	<li>
                 <a class="dropdown-toggle" href="#Options">Options</a>
                 <ul class="dropdown-menu dark" data-role="dropdown" style="display: none;">
@@ -96,7 +96,9 @@
 					<div class="accordion-frame" style="font-size:20px;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add an action to sequence</a>
        	 				<div class="content" style="display: none;">
-       	 					<p>Fill in the ID of the sequence <br>that an action should be added to.<p>
+       	 					<p>Insert Delay Time</p>
+       	 					<p><input name="delay" type="checkbox"></p>
+       	 					<p>Fill in the ID of the sequence <br>that an action should be added to.</p>
         					<p><input name="seqIdAadd" type="text" data-state="info"></p>
         					<p>Fill in the index nr of the action <br>that should be added.<p>
         					<p><input name="iNrA" type="text" data-state="info"></p>

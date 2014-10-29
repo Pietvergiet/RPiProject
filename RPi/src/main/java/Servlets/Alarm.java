@@ -13,36 +13,34 @@ import javax.servlet.http.HttpServletResponse;
 
 import Gpio.GPIO;
 
-@WebServlet("/getDevice")
+@WebServlet("/getAlarm")
 @SuppressWarnings("serial")
-public class Device extends HttpServlet{
+public class Alarm extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
-		System.out.println("AcIONTTTT!!");
 		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL(request.getHeader("Referer"))); 
+		GPIO.setUnstable_Ack();
+		GPIO.pSetupSend();
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
-			System.out.println(action);
-			GPIO.pSetupSend();
-			GPIO.setDevice();
+			GPIO.setAlarm();
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
-			HashMap<Integer, String> lijst = GPIO.getList();
+			HashMap<Integer, Object[]> lijst = GPIO.getAlarmList();
 			//TODO doe iets met lijst
 			GPIO.pSetupSend();
-		} else if (action.equals("Remove")) {
-			System.out.println(action);
-			GPIO.pSetupSend();
-			GPIO.setDevice();
-			GPIO.setRemove();
+		} else if (action.equals("Add")) {
+			GPIO.setAlarm();
+			GPIO.setAdd();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
-			int devID = Integer.parseInt(request.getParameter("remDev"));
-			int dId[] = {devID};
-			GPIO.sendInts(dId);
+			//TODO gooi tijd in 2 bytes en stuur ze
+			int seqID = Integer.parseInt(request.getParameter("seqId"));
+			int sID[] = {seqID};
+			GPIO.sendInts(sID);
 			GPIO.pSetupRecieve();
 			GPIO.waitAck_Stable();
 			String s = GPIO.getSucces();
@@ -51,36 +49,31 @@ public class Device extends HttpServlet{
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
-			out.println("window.open('Device', '_parent');");
+			out.println("window.open('Alarm', '_parent');");
 			out.println("</script>");
 
 			rd.include(request, response);
-		} else if (action.equals("Add")) {
-			System.out.println(action);
-			GPIO.pSetupSend();
-			GPIO.setDevice();
-			GPIO.setAdd();
+		} else if (action.equals("Remove")) {
+			GPIO.setAlarm();
+			GPIO.setRemove();
 			GPIO.setStable_Ack();
-			String devName = request.getParameter("addDev");
-			GPIO.sendInts(GPIO.turnStringtoInt(devName));
+			GPIO.waitAck_Stable();
+			int alId = Integer.parseInt(request.getParameter("alId"));
+			int aID[] = {alId};
+			GPIO.sendInts(aID);
 			GPIO.pSetupRecieve();
 			GPIO.waitAck_Stable();
-			int id = GPIO.getIntInput();
+			String s = GPIO.getSucces();
 			GPIO.sendAck();
 			GPIO.pSetupSend();
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('" + id + " is het nieuwe device id!');");
-			out.println("window.open('Device', '_parent');");
+			out.println("alert('" + s + "');");
+			out.println("window.open('Alarm', '_parent');");
 			out.println("</script>");
 
 			rd.include(request, response);
-		} else {
-			System.out.println("PANIEK PANIEK PANIEK ER IS IETS OF IEMAND FOUT BEZIGN OMG OMG OMG ABORT ABORT ABORT");
 		}
-		
-		
-		
-		response.sendRedirect(response.encodeURL(request.getHeader("Referer")));
-	}
+	}	
+
 }
