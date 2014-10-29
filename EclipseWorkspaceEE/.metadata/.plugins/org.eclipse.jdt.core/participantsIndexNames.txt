@@ -1,9 +1,0 @@
-INDEX VERSION 1.127
-C:\Users\Frank\Documents\Eclipse workspaces\EclipseWorkspaceEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3356041076.index
-\RPi\src\main\java
-C:\Users\Frank\Documents\Eclipse workspaces\EclipseWorkspaceEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\398113861.index
-\Calendar\src\main\java
-C:\Users\Frank\Documents\Eclipse workspaces\EclipseWorkspaceEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1741666354.index
-\RPi\src\main\java
-C:\Users\Frank\Documents\Eclipse workspaces\EclipseWorkspaceEE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\769211835.index
-\onlineStore\src\main\java

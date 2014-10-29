@@ -1,9 +1,0 @@
-package Servlets;
-
-public class Snippet {
-	public static void main(String[] args) {
-		GPIO.setStable();
-					GPIO.waitAck();
-	}
-}
-
