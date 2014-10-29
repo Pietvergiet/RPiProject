@@ -291,6 +291,48 @@ public class GPIO {
 		}
 	}
 	
+	public static int boolToTime() {
+		waitAck_Stable();
+		boolean[] ar1 = getBoolInput();
+		sendAck();
+		waitAck_Stable();
+		boolean[] ar2 = getBoolInput();
+		sendAck();
+		boolean[] time = new boolean[16];
+		for (int i = 0, j = 8; i < 8 && j < 16; i++, j++) {
+			time[i] = ar1[i];
+			time[j] = ar2[i];
+		}
+		int n = 0;
+		for (int i = 0; i < 16; ++i) {
+		    n = (n << 1) + (time[i] ? 1 : 0);
+		}
+		
+		return n;
+	}
+	
+	public static void sendTime(int hour, int min) {
+		int totalMin = hour*60 + min;
+		boolean[] bits = new boolean[16];
+		boolean[] result = new boolean[16];
+	    for (int i = 15; i >= 0; i--) {
+	        bits[i] = (totalMin & (1 << i)) != 0;
+	    }
+	    for (int i = bits.length-1; i >= 0; i--) {
+	    	result[i] = bits[15-i];
+	    }
+	    int ar1 = 0;
+	    int ar2 = 0; 
+		for (int i = 0; i < 8; ++i) {
+		    ar1 = (ar1 << 1) + (result[i] ? 1 : 0);
+		}
+		for (int i = 8; i < 16; ++i) {
+		    ar2 = (ar2 << 1) + (result[i] ? 1 : 0);
+		}
+		int[] time = {ar1, ar2};
+		sendInts(time);
+	}
+	
 	public static HashMap<Integer,String> getList() {
 		HashMap<Integer, String> list = new HashMap<Integer, String>();
 		for(;;) {
@@ -343,7 +385,7 @@ public class GPIO {
 		HashMap<Integer, Object[]> list = new HashMap<Integer, Object[]>();
 		for(;;) {
 			int alID;
-			long time = 0;
+			String time;
 			int actID;
 			StringBuilder name = new StringBuilder();
 			waitAck_Stable();
@@ -352,7 +394,7 @@ public class GPIO {
 			}
 			alID = getIntInput();
 			sendAck();
-			//TODO tijd opvangen
+			int tijd = boolToTime();
 			waitAck_Stable();
 			actID = getIntInput();
 			sendAck();
@@ -361,17 +403,25 @@ public class GPIO {
 				name.append(getCharInput());
 				sendAck();
 			}
+			int uur = tijd/60;
+			int min = tijd%60;
+			time = uur + ":" + min;
 			Object alarm[] = {time, actID, name.toString()};
 			list.put(alID, alarm);
 		}
 	}
 	
-	public static int getIntInput() {
+	public static boolean[] getBoolInput() {
 		boolean[] input = new boolean[8];
-		int n = 0;
 		for (int i = 10; i > 2; i--) {
 			input[10-i] = pin[i].isHigh();
 		}
+		return input;
+	}
+	
+	public static int getIntInput() {
+		boolean[] input = getBoolInput();
+		int n = 0;
 		for (int i = 0; i < 8; ++i) {
 		    n = (n << 1) + (input[i] ? 1 : 0);
 		}
@@ -380,11 +430,11 @@ public class GPIO {
 	
 	public static String getSucces() {
 		if(getIntInput() == 0) {
-			return "Failure: either what you are trying to do is impossible or something else.";
+			return "Failure: either what you are trying to do is impossible or something else we. We suggest you try, try, try again (or give up we don't judge ;) )";
 		} else if (getIntInput() == 255) {
 			return "Succes!";
 		} else {
-			return "Something happen but we are not sure what. Might be a fault on our side might be polar bears who knows.";
+			return "Something happened but we are not sure what. Might be a fault on our side might be polar bears who knows.";
 		}
 	}
 	

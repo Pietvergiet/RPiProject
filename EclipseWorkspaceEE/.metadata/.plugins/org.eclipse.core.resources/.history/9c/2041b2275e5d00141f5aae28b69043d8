@@ -1,0 +1,43 @@
+package Gpio;
+
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
+import com.pi4j.io.gpio.GpioPinDigitalOutput;
+import com.pi4j.io.gpio.PinPullResistance;
+import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.RaspiPin;
+
+public class GPIOInit {
+	
+	public GpioPinDigitalOutput[] Init() {
+		GpioController gpio = GpioFactory.getInstance();
+		GpioPinDigitalOutput GPIO[] = {
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "J5/3-IO17", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "J5/4-IO18", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02, "J5/5-IO27", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03, "J5/6-IO22", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "J5/7-IO23", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "J5/8-IO24", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "J5/9-IO25", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07, "J4/7-RXD0", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08, "J10/3-IO28", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_09, "J10/4-IO29", PinState.LOW),
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10, "J10/5-IO30", PinState.LOW),	
+			gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11, "J10/6-IO31", PinState.LOW)
+		};
+		GPIO[0].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[1].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[2].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[3].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[4].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[5].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[6].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[7].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[8].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[9].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[10].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		GPIO[11].setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+		return GPIO;
+	}
+
+}

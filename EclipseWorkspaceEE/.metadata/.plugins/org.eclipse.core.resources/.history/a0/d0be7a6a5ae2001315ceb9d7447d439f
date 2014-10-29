@@ -1,0 +1,223 @@
+package model;
+
+import java.util.Date;
+import java.util.HashMap;
+
+import org.zkoss.bind.annotation.*;
+import org.zkoss.calendar.Calendars;
+import org.zkoss.calendar.api.*;
+import org.zkoss.calendar.event.CalendarsEvent;
+import org.zkoss.calendar.impl.*;
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Path;
+import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zk.ui.util.Composer;
+import org.zkoss.zk.ui.util.GenericForwardComposer;
+import org.zkoss.bind.BindUtils;
+import org.zkoss.bind.Property;
+import org.zkoss.bind.ValidationContext;
+import org.zkoss.bind.Validator;
+import org.zkoss.bind.annotation.Command;
+import org.zkoss.bind.annotation.Init;
+import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.bind.validator.AbstractValidator;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+
+public class NewEvent extends GenericForwardComposer {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	Calendars calendar;
+	SimpleCalendarModel scm;
+	String title;
+	String beschrijving;
+	Date bDate;
+	Date eDate;
+	Date gDate;
+	boolean ja = false;
+	
+	@Init
+	public void init() {
+		/*cal = calArg;
+		cal.addEventListener("onClick" , new myListener());
+		//QueueUtil.lookupQueue().subscribe(new EventListener());
+		System.out.println("init");*/
+	}
+	
+	public void onEventUpdate$calendar(CalendarsEvent event) {
+		System.out.println("Yay");
+	}
+	
+	public void onEventEdit$calendar(CalendarsEvent event) {
+		SimpleCalendarEvent evtje = (SimpleCalendarEvent) event.getCalendarEvent();
+		evtje.getTitle();
+		System.out.println(evtje.getTitle());
+	}
+
+	@Command
+	@NotifyChange
+	public void createSimpleEvent(@BindingParam("cal") Calendars calArg) {
+		if (calendar == null) {
+			calendar = calArg;
+			System.out.println("kaas");
+		}
+		if (scm == null) {
+			scm = new SimpleCalendarModel();
+			System.out.println("aapje");
+			ja = true;
+			
+		} else {
+			scm = (SimpleCalendarModel) calendar.getModel();
+		}
+		SimpleCalendarEvent sce = new SimpleCalendarEvent();
+		
+		gDate = new Date();
+		sce.setBeginDate(gDate);
+		sce.setEndDate(new Date());
+
+		//The color Strings should only be colors
+		//that CSS accept
+		sce.setContentColor("red");
+		sce.setHeaderColor("blue");
+
+		sce.setContent("This is the content of the event");
+		sce.setTitle("MakeEvent.zul");
+
+		//is this event locked?
+		sce.setLocked(false);
+		scm.add(sce);
+		if (ja) {
+			calendar.setModel(scm);
+		} else {
+			scm.update(sce);
+		}
+	}
+
+	@Command
+	public void goGreen(@BindingParam("cal") Calendars calArg) {
+		if (calendar == null) {
+			calendar = calArg;
+			System.out.println("kaas");
+		}
+		if (scm == null) {
+			scm = new SimpleCalendarModel();
+			System.out.println("aapje");
+			ja = true;
+			
+		} else {
+			scm = (SimpleCalendarModel) calendar.getModel();
+		}
+		
+		if (calendar.getEvent(gDate).size() > 3) {
+			SimpleCalendarEvent sce = (SimpleCalendarEvent) calendar.getEvent(bDate).get(0);
+			sce.setContentColor("green");
+			scm.update(sce);
+		}
+		SimpleCalendarEvent sce = (SimpleCalendarEvent) calendar.getEvent(gDate).get(0);
+		sce.setContentColor("green");
+		scm.update(sce);
+
+	}
+
+	@Command
+	@NotifyChange
+	public void setMold(@BindingParam("mold") String string) {
+		Calendars cal = (Calendars) Path.getComponent("/window/calendar");
+		cal.setMold(string);
+	}
+
+	@Command
+	public void showChildWindow() {
+		Executions.createComponents("MakeEvent.zul", null, null);
+	}
+	@Command 
+	public void createEvent(@BindingParam("cal") Calendars calArg) {
+		if (calendar == null) {
+			calendar = calArg;
+			System.out.println("kaas");
+		}
+		SimpleCalendarEvent sce = new SimpleCalendarEvent();
+		if (scm == null) {
+			scm = new SimpleCalendarModel();
+			System.out.println("aapje");
+			ja = true;
+		} else {
+			scm = (SimpleCalendarModel) calendar.getModel();
+		}
+		bDate.setSeconds(bDate.getSeconds() + 60*60*12 );
+		eDate.setSeconds(bDate.getSeconds() + 60*60*24 -1);
+		sce.setBeginDate(bDate);
+		sce.setEndDate(eDate);
+		//The color Strings should only be colors
+		//that CSS accept
+		sce.setContentColor("purple");
+		sce.setHeaderColor("yellow");
+
+		sce.setContent(beschrijving);
+		sce.setTitle(title);
+
+		//is this event locked?
+		sce.setLocked(true);
+		scm.add(sce);
+		System.out.println(title + " " + beschrijving + " " + bDate);
+		if (ja) {
+			calendar.setModel(scm);
+		} else {
+			scm.update(sce);
+		}
+	}
+
+	public void setbDate(Date bDate) {
+		this.bDate = bDate;
+	}
+
+	public void setBeschrijving(String beschrijving) {
+		this.beschrijving = beschrijving;
+	}
+
+	public void seteDate(Date eDate) {
+		this.eDate = eDate;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Date getbDate() {
+		return bDate;
+	}
+
+	public String getBeschrijving() {
+		return beschrijving;
+	}
+
+	public Date geteDate() {
+		return eDate;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setCal(Calendars cal) {
+		this.calendar = cal;
+	}
+
+	public Calendars getCal() {
+		return calendar;
+	}
+	public class myListener implements EventListener {
+
+		@Override
+		public void onEvent(Event arg0) throws Exception {
+			System.out.println("yoloooo");
+			
+		}
+		
+	}
+
+
+}

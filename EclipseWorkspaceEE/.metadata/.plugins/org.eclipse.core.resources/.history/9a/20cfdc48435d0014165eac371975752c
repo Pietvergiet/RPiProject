@@ -1,0 +1,26 @@
+package Gpio;
+
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
+import com.pi4j.io.gpio.GpioPinDigitalOutput;
+import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.RaspiPin;
+
+public class Init {
+	
+	public Init() {
+		GpioController gpio = GpioFactory.getInstance();
+		GpioPinDigitalOutput GPIO1 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "Pin1", PinState.LOW);
+		GpioPinDigitalOutput GPIO2 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "Pin2", PinState.LOW);
+		GpioPinDigitalOutput GPIO3 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02, "Pin3", PinState.LOW);
+		GpioPinDigitalOutput GPIO4 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03, "Pin4", PinState.LOW);
+		GpioPinDigitalOutput GPIO5 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "Pin5", PinState.LOW);
+		GpioPinDigitalOutput GPIO6 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "Pin6", PinState.LOW);
+		GpioPinDigitalOutput GPIO7 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "Pin7", PinState.LOW);
+		GpioPinDigitalOutput GPIO8 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07, "Pin8", PinState.LOW);
+		GpioPinDigitalOutput GPIO9 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08, "Pin9", PinState.LOW);
+		GpioPinDigitalOutput GPIO10 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_09, "Pin10", PinState.LOW);
+		GpioPinDigitalOutput GPIO11 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10", "Pin11", PinState.LOW);	
+	}
+
+}

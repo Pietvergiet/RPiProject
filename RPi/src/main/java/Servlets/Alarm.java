@@ -37,7 +37,7 @@ public class Alarm extends HttpServlet {
 			GPIO.setAdd();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
-			//TODO gooi tijd in 2 bytes en stuur ze
+			GPIO.sendTime(3, 3);
 			int seqID = Integer.parseInt(request.getParameter("seqId"));
 			int sID[] = {seqID};
 			GPIO.sendInts(sID);
