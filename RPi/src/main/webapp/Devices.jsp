@@ -29,10 +29,6 @@
                 <a class="dropdown-toggle" href="#Options">Options</a>
                 <ul class="dropdown-menu dark" data-role="dropdown" style="display: none;">
                 	<li><a href="#Time">Set the time</a></li>
-                    <li><a href="#Record">Record new action</a></li>
-                    <li><a href="#Add">Add a new Device</a></li>
-                    <li><a href="#Remove">Remove a device</a></li>
-                    <li><a href="#Edit">Remove an action</a></li>
                 </ul>
             </li>
             <li><a href="./Logout">Logout</a>
@@ -41,7 +37,7 @@
 </nav>
 
 <!-- Body -->
-<div style="margin-left:20px;margin-top:60px">
+<div class="grid" style="margin-left:1%;margin-top:3%">
 
 	<div class="grid">
 	    
