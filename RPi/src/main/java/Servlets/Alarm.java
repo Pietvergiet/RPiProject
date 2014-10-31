@@ -3,6 +3,7 @@ package Servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,7 +30,7 @@ public class Alarm extends HttpServlet {
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
-			HashMap<Integer, Object[]> lijst = GPIO.getAlarmList();
+			Map<Integer, Object[]> lijst = GPIO.getAlarmList();
 			//TODO doe iets met lijst
 			GPIO.pSetupSend();
 		} else if (action.equals("Add")) {

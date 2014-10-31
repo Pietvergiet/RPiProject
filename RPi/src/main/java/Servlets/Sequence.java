@@ -3,6 +3,8 @@ package Servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,7 +34,7 @@ public class Sequence extends HttpServlet{
 			int sId[] = {seqId};
 			GPIO.sendInts(sId);
 			GPIO.pSetupRecieve();
-			HashMap<Integer, HashMap<Integer,String>> lijst = GPIO.getActionList();
+			Map<Integer, TreeMap<Integer,String>> lijst = GPIO.getActionList();
 			//TODO doe iets met lijst
 			GPIO.pSetupSend();
 		} else if (action.contains("List")) {
@@ -41,7 +43,7 @@ public class Sequence extends HttpServlet{
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
-			HashMap<Integer, String> lijst = GPIO.getList();
+			Map<Integer, String> lijst = GPIO.getList();
 			//TODO doe iets met lijst
 			GPIO.pSetupSend();
 		} else if (action.equals("Remove Action")) {

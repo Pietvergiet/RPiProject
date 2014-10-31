@@ -1,6 +1,8 @@
 package Gpio;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
@@ -333,14 +335,14 @@ public class GPIO {
 		sendInts(time);
 	}
 	
-	public static HashMap<Integer,String> getList() {
-		HashMap<Integer, String> list = new HashMap<Integer, String>();
+	public static TreeMap<Integer,String> getList() {
+		Map<Integer, String> list = new TreeMap<Integer, String>();
 		for(;;) {
 			StringBuilder name = new StringBuilder();
 			int nr;
 			waitAck_Stable();
 			if (checkZByte()) {
-				return list;
+				return (TreeMap<Integer, String>) list;
 			}
 			nr = getIntInput();
 			sendAck();
@@ -349,14 +351,14 @@ public class GPIO {
 				name.append(getCharInput());
 				sendAck();
 			}
-			list.put(nr, name.toString());
+			list.put(nr, stringToASCII(name.toString()));
 		}
 		
 	}
 	
-	public static HashMap<Integer, HashMap<Integer, String>> getActionList() {
-		HashMap<Integer, HashMap<Integer, String>> list = new HashMap<Integer, HashMap<Integer, String>>();
-		HashMap<Integer, String> action = new HashMap<Integer, String>();
+	public static TreeMap<Integer, TreeMap<Integer, String>> getActionList() {
+		Map<Integer, TreeMap<Integer, String>> list = new TreeMap<Integer, TreeMap<Integer, String>>();
+		Map<Integer, String> action = new TreeMap<Integer, String>();
 		for(;;) {
 			action.clear();
 			int nr;
@@ -364,7 +366,7 @@ public class GPIO {
 			StringBuilder name = new StringBuilder();
 			waitAck_Stable();
 			if(checkZByte()) {
-				return list;
+				return (TreeMap<Integer, TreeMap<Integer, String>>) list;
 			}
 			nr = getIntInput();
 			sendAck();
@@ -376,13 +378,13 @@ public class GPIO {
 				name.append(getCharInput());
 				sendAck();
 			}
-			action.put(id, name.toString());
-			list.put(nr, action);
+			action.put(id, stringToASCII(name.toString()));
+			list.put(nr, (TreeMap<Integer, String>) action);
 		}
 	}
 	
-	public static HashMap<Integer, Object[]> getAlarmList() {
-		HashMap<Integer, Object[]> list = new HashMap<Integer, Object[]>();
+	public static TreeMap<Integer, Object[]> getAlarmList() {
+		Map<Integer, Object[]> list = new TreeMap<Integer, Object[]>();
 		for(;;) {
 			int alID;
 			String time;
@@ -390,7 +392,7 @@ public class GPIO {
 			StringBuilder name = new StringBuilder();
 			waitAck_Stable();
 			if (checkZByte()) {
-				return list;
+				return (TreeMap<Integer, Object[]>) list;
 			}
 			alID = getIntInput();
 			sendAck();
@@ -406,7 +408,7 @@ public class GPIO {
 			int uur = tijd/60;
 			int min = tijd%60;
 			time = uur + ":" + min;
-			Object alarm[] = {time, actID, name.toString()};
+			Object alarm[] = {stringToASCII(time), actID, stringToASCII(name.toString())};
 			list.put(alID, alarm);
 		}
 	}
@@ -466,6 +468,24 @@ public class GPIO {
 		}
 		
 		return ints;
+	}
+	
+	public static String stringToASCII(String string) {
+		if(string != null) {
+			String input = string;
+			char[] chars = input.toCharArray();
+
+			StringBuilder output = new StringBuilder();
+
+			for (char c : chars)
+			{
+				output.append("&#").append((int) c).append(";");
+			}
+			String output2 = new String(output);
+			return output2;
+		} else {
+			return null;
+		}
 	}
 
 	public static void main(String[] arg) {

@@ -16,6 +16,7 @@
 
 </head>
 <body class="metro">
+<div class="container">
 <!-- Header -->
 <nav class="navigation-bar dark fixed-top">
 	<nav class="navigation-bar-content">
@@ -29,21 +30,83 @@
                 <a class="dropdown-toggle" href="#Options">Options</a>
                 <ul class="dropdown-menu dark" data-role="dropdown" style="display: none;">
                 	<li><a href="#Time">Set the time</a></li>
-                    <li><a href="#Record">Record new action</a></li>
-                    <li><a href="#Add">Add a new Device</a></li>
-                    <li><a href="#Remove">Remove a device</a></li>
-                    <li><a href="#Edit">Remove an action</a></li>
+                    <li><a href="#Pass">Change your password</a></li>
                 </ul>
             </li>
             <li><a href="./Logout">Logout</a>
-            <a class="element place-right" href="#"><div class="times" data-role="times" style="font-size:100%"></div></a>
+            <li><a class="element place-right" href="#"><div class="times" data-role="times" style="font-size:100%"></div></a></li>
     	</ul>
     </nav>	
 </nav>
 
 <!-- Body -->
-<div class="grid" style="margin-left:20px;margin-top:60px">
 
+<div class="grid" style="margin-left:1%;margin-top:3%">
+	<%@ page import="java.util.*"%>
+	<%
+		int elem = 0;
+		if (request.getAttribute("actionList") != null) {	
+
+			Map<Integer, String> actions = (Map<Integer, String>) request.getAttribute("actionList");
+			if (actions.size() == 0) {
+				
+			} else {
+	%>
+	<form method="post" action="doAction">
+	<input type="hidden" name="url" value="/Dynamic.jsp">
+	<div class="grid">
+	<%
+				for (Map.Entry<Integer, String> e : actions.entrySet()) {
+	%>
+						<div class="row" >
+						<div class="span1">
+						ID:<a name="actId" ><%= e.getKey() %></a>
+						</div>
+						<div class="span1">
+						Name: <a name="actNam"><%= e.getValue() %></a>
+						</div>
+						<div class="span1">
+						<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Remove">
+						</div>
+						<div class="span1">
+						<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Execute">
+						<input type="hidden" name="actId" value="<%=e.getKey() %>">
+						<input type="hidden" name="actIdexe" value="<%=e.getKey() %>">
+						</div>
+						</div>
+						</form>
+	<% }}} else if (request.getAttribute("deviceList") != null) { 
+			Map<Integer, String> devices = (Map<Integer, String>) request.getAttribute("deviceList");
+			if (devices.size() == 0) {
+				
+			} else {
+	%>
+				<form method="post" action="doAction">
+				<input type="hidden" name="url" value="/Dynamic.jsp">
+				<div class="grid">
+	<%
+				for (Map.Entry<Integer, String> e : devices.entrySet()) {
+	%>
+					<div class="row" >
+					<div class="span1">
+					ID:<a name="actId" ><%= e.getKey() %></a>
+					</div>
+					<div class="span1">
+					Name: <a name="actNam"><%= e.getValue() %></a>
+					</div>
+					<div class="span1">
+					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Remove">
+					</div>
+					<div class="span1">
+					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Execute">
+					<input type="hidden" name="actId" value="<%=e.getKey() %>">
+					<input type="hidden" name="actIdexe" value="<%=e.getKey() %>">
+					</div>
+					</div>
+					</form>
+	<% }}}
+	%>
+</div>
 </div>
 </body>
 </html>
