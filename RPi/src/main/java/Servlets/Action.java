@@ -51,7 +51,7 @@ public class Action extends HttpServlet{
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
-			out.println("window.open('Device', '_parent');");
+			out.println("window.open('Action', '_parent');");
 			out.println("</script>");
 
 			rd.include(request, response);
@@ -75,7 +75,7 @@ public class Action extends HttpServlet{
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + id + " is het nieuwe action id!');");
-			out.println("window.open('Device', '_parent');");
+			out.println("window.open('Action', '_parent');");
 			out.println("</script>");
 
 			rd.include(request, response);
@@ -97,7 +97,7 @@ public class Action extends HttpServlet{
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
-			out.println("window.open('Device', '_parent');");
+			out.println("window.open('Action', '_parent');");
 			out.println("</script>");
 
 			rd.include(request, response);

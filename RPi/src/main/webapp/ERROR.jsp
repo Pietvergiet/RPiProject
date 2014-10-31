@@ -1,5 +1,5 @@
 <% if (request.getSession().getAttribute("sessionId") == null) {
-	response.sendRedirect("./Login");
+	response.sendRedirect(response.encodeURL("./Login"));
 	}%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -36,18 +36,15 @@
                 </ul>
             </li>
             <li><a href="./Logout">Logout</a>
-            <a class="element place-right" href="#"><div class="times" data-role="times" style="font-size:100%"></div></a>
     	</ul>
     </nav>	
 </nav>
 
 <!-- Body -->
 <div class="grid" style="margin-left:20px;margin-top:60px">
-	<form method="post" action="Blink">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT1" style="font-size:40px; height:200px; width:600px;">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT2" style="font-size:40px; height:200px; width:600px;">
-	</form>
-
+	<img src="images/giphy.gif" class="span4">
+	Something went wrong either you done f'ed up or we send you to the wrong page.
 </div>
+
 </body>
 </html>

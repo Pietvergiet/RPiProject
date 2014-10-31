@@ -1,3 +1,6 @@
+<% if (request.getSession().getAttribute("sessionId") == null) {
+	response.sendRedirect(response.encodeURL("./Login"));
+	}%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,6 +35,7 @@
                     <li><a href="#Edit">Remove an action</a></li>
                 </ul>
             </li>
+            <li><a href="./Logout">Logout</a>
     	</ul>
     </nav>	
 </nav>
@@ -51,7 +55,7 @@
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
 					<div class="accordion-frame" style="font-size:20px;">
-    					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove a device</a>
+    					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove an alarm</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the alarm that should be removed.<p>
         					<p><input name="alId" type="text" data-state="info"></p>
@@ -64,7 +68,7 @@
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
 					<div class="accordion-frame" style="font-size:20px;">
-    					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add a device</a>
+    					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add an alarm</a>
        	 				<div class="content" style="display: none;">
        	 					<p>Fill in the time.<p>
         					<p><input name="time" type="text" data-state="info"></p>

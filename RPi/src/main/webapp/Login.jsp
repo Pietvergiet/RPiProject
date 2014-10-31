@@ -1,5 +1,5 @@
-<% if (request.getSession().getAttribute("sessionId") == null) {
-	response.sendRedirect("./Login");
+<% if (request.getSession().getAttribute("sessionId") != null) {
+	response.sendRedirect(".");
 	}%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -35,19 +35,35 @@
                     <li><a href="#Edit">Remove an action</a></li>
                 </ul>
             </li>
-            <li><a href="./Logout">Logout</a>
-            <a class="element place-right" href="#"><div class="times" data-role="times" style="font-size:100%"></div></a>
     	</ul>
     </nav>	
 </nav>
 
 <!-- Body -->
 <div class="grid" style="margin-left:20px;margin-top:60px">
-	<form method="post" action="Blink">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT1" style="font-size:40px; height:200px; width:600px;">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT2" style="font-size:40px; height:200px; width:600px;">
+	<form method="post" action="doLogin" >
+		<input type="password" name="pass">
 	</form>
-
 </div>
+
 </body>
+<script type="text/javascript">
+		var secret = "38384040373937396665"; 
+		var input = "";
+		var timer;
+		
+		$(document).keyup(function(e) {
+		   input += e.which;    
+		   clearTimeout(timer);
+		   timer = setTimeout(function() { input = ""; }, 3000);
+		   check_input();
+		});
+		
+		function check_input() {
+		    if(input == secret) {
+		    	alert("You can't cheat your way out of this :P\nNice try though.");           
+		    }
+		};
+</script>
+
 </html>

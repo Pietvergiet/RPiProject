@@ -442,6 +442,16 @@ public class GPIO {
 		return getIntInput() == 0;
 	}
 	
+	public static String getPass() {
+		StringBuilder pass = new StringBuilder();
+		for (int i = 0; i < 20; i++) {
+			waitAck_Stable();
+			pass.append(getCharInput());
+			sendAck();
+		}
+		return pass.toString();
+	}
+	
 	public static char getCharInput() {
 		int n = getIntInput();
 		char ch = (char) n;
