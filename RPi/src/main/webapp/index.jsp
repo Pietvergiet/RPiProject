@@ -1,6 +1,6 @@
-<% if (request.getSession().getAttribute("sessionId") == null) {
+<%/* if (request.getSession().getAttribute("sessionId") == null) {
 	response.sendRedirect("./Login");
-	}%>
+	}*/%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,7 +17,14 @@
 </head>
 <body class="metro">
 <!-- Header -->
-<nav class="navigation-bar dark fixed-top">
+<nav class="navigation-bar dark shadow">
+<div class="navbar-header">
+                <div class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">          
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </div>
+                </div>
 	<nav class="navigation-bar-content">
         <ul class="element-menu">
         	<li><a href="/RPi">Home</a></li>
@@ -42,10 +49,10 @@
 </nav>
 
 <!-- Body -->
-<div class="grid" style="margin-left:20px;margin-top:60px">
+<div class="grid" style="margin-left:2%;margin-top:5%">
 	<form method="post" action="Blink">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT1" style="font-size:40px; height:200px; width:600px;">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT2" style="font-size:40px; height:200px; width:600px;">
+		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT1" style="font-size:320%; height:200px; width:45%;">
+		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT2" style="font-size:320%; height:200px; width:45%;">
 	</form>
 
 </div>

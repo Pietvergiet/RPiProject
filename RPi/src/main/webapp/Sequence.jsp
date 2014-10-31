@@ -1,6 +1,6 @@
-<% if (request.getSession().getAttribute("sessionId") == null) {
+<%/*if (request.getSession().getAttribute("sessionId") == null) {
 	response.sendRedirect(response.encodeURL("./Login"));
-	}%>
+	}*/%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,7 +17,14 @@
 </head>
 <body class="metro">
 <!-- Header -->
-<nav class="navigation-bar dark fixed-top">
+<nav class="navigation-bar dark shadow">
+<div class="navbar-header">
+                <div class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">          
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </div>
+                </div>
 	<nav class="navigation-bar-content">
         <ul class="element-menu">
         	<li><a href="/RPi">Home</a></li>
@@ -41,18 +48,18 @@
 </nav>
 
 <!-- Body -->
-<div class="grid" style="margin-left:20px;margin-top:60px">
+<div class="grid" style="margin-left:2%;margin-top:5%">
 	<form method="post" action="doSequence">
 			<div class="row" >
-				<div class="span4"><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List all sequences			" style="font-size:20px; height:45px; width:300px;"></div>
+				<div class="span4"><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List all sequences			" style="font-size:150%; height:45px; width:100%;"></div>
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
-					<div class="accordion-frame" style="font-size:20px;">
+					<div class="accordion-frame" style="font-size:150%;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">List all actions of a sequence</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the sequence <br>of which you want to know the actions.<p>
         					<p><input name="seqId" type="text" data-state="info"></p>
-        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List Actions" style="font-size:15px; height:50px; width:175px;"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List Actions" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
 				</div>			
@@ -60,25 +67,25 @@
 			<div class="row">	
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
-					<div class="accordion-frame" style="font-size:20px;">
+					<div class="accordion-frame" style="font-size:150%;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove a sequence</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the sequence <br>that should be removed.<p>
         					<p><input name="seqIdrem" type="text" data-state="info"></p>
-        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove" style="font-size:15px; height:50px; width:175px;"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
 				</div>
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
-					<div class="accordion-frame" style="font-size:20px;">
+					<div class="accordion-frame" style="font-size:150%;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove an action</a>
        	 				<div class="content" style="display: none;">
        	 					<p>Fill in the ID of the sequence <br>that should be removed.<p>
         					<p><input name="seqIdArem" type="text" data-state="info"></p>
         					<p>Fill in the index nr of the action <br>that should be removed from the sequence.<p>
         					<p><input name="iNr" type="text" data-state="info"></p>
-        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove Action" style="font-size:15px; height:50px; width:175px;"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove Action" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
 				</div>
@@ -86,18 +93,18 @@
 			<div class="row">	
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
-					<div class="accordion-frame" style="font-size:20px;">
+					<div class="accordion-frame" style="font-size:150%;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add a sequence</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the name of the sequence <br>that should be added.<p>
         					<p><input name="seqIdadd" type="text" data-state="info"></p>
-        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add" style="font-size:15px; height:50px; width:175px;"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
 				</div>
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
-					<div class="accordion-frame" style="font-size:20px;">
+					<div class="accordion-frame" style="font-size:150%;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add an action to sequence</a>
        	 				<div class="content" style="display: none;">
        	 					<p>Insert Delay Time</p>
@@ -108,7 +115,7 @@
         					<p><input name="iNrA" type="text" data-state="info"></p>
         					<p>Fill in the ID of the action <br>that should be added.<p>
         					<p><input name="actIDadd" type="text" data-state="info"></p>
-        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add Action" style="font-size:15px; height:50px; width:175px;"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add Action" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
 				</div>
@@ -116,12 +123,12 @@
 			<div class="row">	
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
-					<div class="accordion-frame" style="font-size:20px;">
+					<div class="accordion-frame" style="font-size:150%;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Execute a sequence</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the sequence <br>that should be executed.<p>
         					<p><input name="seqExe" type="text" data-state="info"></p>
-        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Execute" style="font-size:15px; height:50px; width:175px;"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Execute" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
 				</div>

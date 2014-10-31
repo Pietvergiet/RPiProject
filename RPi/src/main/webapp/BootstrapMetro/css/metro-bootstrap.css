@@ -6,9 +6,13 @@ body {
 }
 html,
 body {
-  padding: 0;
+  padding: 70px;
   margin: 0;
   height: 100%;
+  padding-top: 100px;
+  
+ 
+}
 }
 html,
 body,
