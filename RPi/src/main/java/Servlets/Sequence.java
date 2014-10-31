@@ -22,11 +22,11 @@ public class Sequence extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL(request.getHeader("Referer")));
-		GPIO.setUnstable_Ack();
-		GPIO.pSetupSend();
+		//GPIO.setUnstable_Ack();
+		//GPIO.pSetupSend();
 		String action = (String) request.getParameter("button");
 		if (action.equals("List Actions")) {
-			GPIO.setSeq();
+			/*GPIO.setSeq();
 			GPIO.setSeqListAct();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
@@ -36,16 +36,35 @@ public class Sequence extends HttpServlet{
 			GPIO.pSetupRecieve();
 			Map<Integer, TreeMap<Integer,String>> lijst = GPIO.getActionList();
 			//TODO doe iets met lijst
-			GPIO.pSetupSend();
+			GPIO.pSetupSend();*/
+			Map<Integer, Map<Integer, String>> exampl = new TreeMap<Integer, Map<Integer, String>>();
+			Map<Integer, String> examp = new TreeMap<Integer, String>(); 
+			
+			examp.put(4, "Harder");
+			exampl.put(1, examp);
+			exampl.put(2, examp);
+			exampl.put(3, examp);
+			exampl.put(4, examp);
+			exampl.put(5, examp);
+			request.setAttribute("seqActList", exampl);
+			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 		} else if (action.contains("List")) {
-			GPIO.setSeq();
+			/*GPIO.setSeq();
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
 			Map<Integer, String> lijst = GPIO.getList();
 			//TODO doe iets met lijst
-			GPIO.pSetupSend();
+			GPIO.pSetupSend();*/
+			Map<Integer, String> examp = new TreeMap<Integer, String>(); 
+			examp.put(1, "AAN/UIT");
+			examp.put(2, "Next");
+			examp.put(3, "PREV");
+			examp.put(4, "Harder");
+			examp.put(5, "Zachter");
+			request.setAttribute("seqActList", examp);
+			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 		} else if (action.equals("Remove Action")) {
 			GPIO.setSeq();
 			GPIO.setSeqRemAct();

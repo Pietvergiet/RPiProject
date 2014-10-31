@@ -383,8 +383,8 @@ public class GPIO {
 		}
 	}
 	
-	public static TreeMap<Integer, Object[]> getAlarmList() {
-		Map<Integer, Object[]> list = new TreeMap<Integer, Object[]>();
+	public static TreeMap<Integer, String[]> getAlarmList() {
+		Map<Integer, String[]> list = new TreeMap<Integer, String[]>();
 		for(;;) {
 			int alID;
 			String time;
@@ -392,7 +392,7 @@ public class GPIO {
 			StringBuilder name = new StringBuilder();
 			waitAck_Stable();
 			if (checkZByte()) {
-				return (TreeMap<Integer, Object[]>) list;
+				return (TreeMap<Integer, String[]>) list;
 			}
 			alID = getIntInput();
 			sendAck();
@@ -408,7 +408,7 @@ public class GPIO {
 			int uur = tijd/60;
 			int min = tijd%60;
 			time = uur + ":" + min;
-			Object alarm[] = {stringToASCII(time), actID, stringToASCII(name.toString())};
+			String alarm[] = {stringToASCII(time), Integer.toString(actID), stringToASCII(name.toString())};
 			list.put(alID, alarm);
 		}
 	}

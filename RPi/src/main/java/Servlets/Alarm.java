@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,18 +22,31 @@ public class Alarm extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL(request.getHeader("Referer"))); 
-		GPIO.setUnstable_Ack();
-		GPIO.pSetupSend();
+		/*GPIO.setUnstable_Ack();
+		GPIO.pSetupSend();*/
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
-			GPIO.setAlarm();
+			/*GPIO.setAlarm();
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
-			Map<Integer, Object[]> lijst = GPIO.getAlarmList();
+			Map<Integer, String[]> lijst = GPIO.getAlarmList();
 			//TODO doe iets met lijst
-			GPIO.pSetupSend();
+			GPIO.pSetupSend();*/
+			Map<Integer, String[]> examp = new TreeMap<Integer, String[]>();
+			String id = "5";
+			String tijd = "12:30";
+			String name = "uitslapen";
+			String[] arrr = {tijd, id, name};
+			examp.put(1, arrr);
+			examp.put(2, arrr);
+			examp.put(3, arrr);
+			examp.put(4, arrr);
+			examp.put(5, arrr);
+			request.setAttribute("alarmList", examp);
+			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
+			
 		} else if (action.equals("Add")) {
 			GPIO.setAlarm();
 			GPIO.setAdd();

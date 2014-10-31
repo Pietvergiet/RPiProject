@@ -43,6 +43,7 @@
 <div class="grid" style="margin-left:20px;margin-top:60px">
 	<form method="post" action="doLogin" >
 		<input type="password" name="pass">
+		<input type="submit">
 	</form>
 </div>
 
@@ -65,5 +66,21 @@
 		    }
 		};
 </script>
+<script type="text/javascript">
+// Using jQuery.
 
+$(function() {
+    $('form').each(function() {
+    	alert("hoi");
+        $(this).find('input').keypress(function(e) {
+            // Enter pressed?
+            if(e.which == 10 || e.which == 13) {
+                this.form.submit();
+            }
+        });
+
+        $(this).find('input[type=submit]').hide();
+    });
+});
+</script>
 </html>

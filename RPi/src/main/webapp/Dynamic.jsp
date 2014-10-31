@@ -52,9 +52,8 @@
 				
 			} else {
 	%>
-	<form method="post" action="doAction">
-	<input type="hidden" name="url" value="/Dynamic.jsp">
-	<div class="grid">
+						<form method="post" action="doAction">
+						<div class="grid">
 	<%
 				for (Map.Entry<Integer, String> e : actions.entrySet()) {
 	%>
@@ -74,8 +73,8 @@
 						<input type="hidden" name="actIdexe" value="<%=e.getKey() %>">
 						</div>
 						</div>
-						</form>
-	<% }}} else if (request.getAttribute("deviceList") != null) { 
+						
+	<% }%></div></form><%}} else if (request.getAttribute("deviceList") != null) { 
 			Map<Integer, String> devices = (Map<Integer, String>) request.getAttribute("deviceList");
 			if (devices.size() == 0) {
 				
@@ -89,23 +88,127 @@
 	%>
 					<div class="row" >
 					<div class="span1">
-					ID:<a name="actId" ><%= e.getKey() %></a>
+					ID: <%= e.getKey() %>
 					</div>
 					<div class="span1">
-					Name: <a name="actNam"><%= e.getValue() %></a>
+					Name: <%= e.getValue() %>
+					</div>
+					<div class="span1">
+					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Remove">
+					</div>
+					<input type="hidden" name="remDev" value="<%=e.getKey() %>">
+					</div>
+					
+	<% }%></div></form><%}} else if (request.getAttribute("alarmList") != null) { 
+			Map<Integer, String[]> alarms = (Map<Integer, String[]>) request.getAttribute("alarmList");
+			if (alarms.size() == 0) {
+				
+			} else {
+	%>
+				<form method="post" action="getAlarm">
+				<input type="hidden" name="url" value="/Dynamic.jsp">
+				<div class="grid">
+	<%
+				for (Map.Entry<Integer, String[]> e : alarms.entrySet()) {
+					String[] object = e.getValue();
+					String tijd = object[0];
+					String id = object[1];
+					String name = object[2];
+	%>
+					<div class="row" >
+					<div class="span1">
+					Alarm ID: <%= e.getKey() %>
+					</div>
+					<div class="span1">
+					Time: <%= tijd %>
+					</div>
+					<div class="span1">
+					Sequence ID: <%= id %>
+					</div>
+					<div class="span1">
+					Sequence Name: <%= name %>
+					</div>
+					<div class="span1">
+					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Remove">
+					</div>
+					<input type="hidden" name="alId" value="<%=e.getKey() %>">
+					</div>
+					
+	<% }%></div></form><%}} else if (request.getAttribute("seqList") != null) { 
+		
+			Map<Integer, String> seqs = (Map<Integer, String>) request.getAttribute("seqList");
+			if (seqs.size() == 0) {
+				
+			} else {
+	%>
+				<form method="post" action="doSequence">
+				<input type="hidden" name="url" value="/Dynamic.jsp">
+				<div class="grid">
+	<%
+				for (Map.Entry<Integer, String> e : seqs.entrySet()) {
+	%>
+					<div class="row" >
+					<div class="span1">
+					ID: <%= e.getKey() %>
+					</div>
+					<div class="span1">
+					Name: <%= e.getValue() %>
 					</div>
 					<div class="span1">
 					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Remove">
 					</div>
 					<div class="span1">
-					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Execute">
-					<input type="hidden" name="actId" value="<%=e.getKey() %>">
-					<input type="hidden" name="actIdexe" value="<%=e.getKey() %>">
+					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="List Action">
 					</div>
+					<div class="span1">
+					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Execute">
+					</div>
+					<input type="hidden" name="seqIdrem" value="<%=e.getKey() %>">
+					<input type="hidden" name="seqId" value="<%=e.getKey() %>">
+					<input type="hidden" name="seqExe" value="<%=e.getKey() %>">
+					</div>
+					
+	<% }%></div></form><%}} else if (request.getAttribute("seqActList") != null) { 
+		
+			Map<Integer, Map<Integer, String>> seqs = (Map<Integer, Map<Integer, String>>) request.getAttribute("seqActList");
+			if (seqs.size() == 0) {
+				
+			} else {
+	%>
+				
+				<input type="hidden" name="url" value="/Dynamic.jsp">
+				<div class="grid">
+	<%
+				for (Map.Entry<Integer, Map<Integer,String>> e : seqs.entrySet()) {
+					Map<Integer,String> acts = e.getValue();		
+					for (Map.Entry<Integer, String> f : acts.entrySet()) {
+	%>
+					<form method="post" action="doSequence">
+					<div class="span1">
+					Index: <%= e.getKey() %>
+					</div>
+					<div class="row" >
+					<div class="span1">
+					ID: <%= f.getKey() %>
+					</div>
+					<div class="span1">
+					Name: <%= f.getValue() %>
+					</div>
+					<div class="span1">
+					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Remove Action">
+					</div>
+					<input type="hidden" name="seqIdArem" value="<%=f.getKey() %>">
+					<input type="hidden" name="seqId" value="<%=e.getKey() %>">
 					</div>
 					</form>
-	<% }}}
-	%>
+	<% }%>
+					<form method="post" action="doSequence">
+					
+					</form>	
+	<%}%>
+				</div>
+	<%}} %>
+	</div>
 </div>
 </div>
 </body>
