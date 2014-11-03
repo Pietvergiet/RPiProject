@@ -73,7 +73,7 @@ public class Action extends HttpServlet{
 			int nId[] = {newId};
 			String newName = request.getParameter("nActNam");
 			GPIO.sendInts(nId);
-			GPIO.sendInts(GPIO.turnStringtoInt(newName));
+			GPIO.sendInts(GPIO.turnStringtoInt(GPIO.make16Chars(newName)));
 			GPIO.pSetupRecieve();
 			GPIO.waitAck_Stable();
 			int id = GPIO.getIntInput();

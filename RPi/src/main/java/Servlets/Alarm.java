@@ -21,7 +21,7 @@ public class Alarm extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
-		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL(request.getHeader("Referer"))); 
+		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL("/Alarm")); 
 		/*GPIO.setUnstable_Ack();
 		GPIO.pSetupSend();*/
 		String action = (String) request.getParameter("button");

@@ -267,9 +267,9 @@ public class GPIO {
 			boolean stand[] = intToBool(chars[i]);
 			for(int j = 0; j < stand.length; j++) {
 				if(stand[j]) {
-					pin[j+3].high();
+					pin[10-j].high();
 				} else {
-					pin[j+3].low();
+					pin[10-j].low();
 				}
 				
 			}
@@ -486,6 +486,14 @@ public class GPIO {
 		} else {
 			return null;
 		}
+	}
+	
+	public static String make16Chars(String string) {
+		StringBuilder vol = new StringBuilder(string);
+		while (vol.length() < 16 ) {
+			vol.append((char) 0);
+		}
+		return vol.toString();
 	}
 
 	public static void main(String[] arg) {

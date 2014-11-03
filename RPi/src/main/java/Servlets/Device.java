@@ -22,7 +22,7 @@ public class Device extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
 		System.out.println("AcIONTTTT!!");
-		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL(request.getHeader("Referer"))); 
+		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL("/Device")); 
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
 			System.out.println(action);
@@ -71,7 +71,7 @@ public class Device extends HttpServlet{
 			GPIO.setAdd();
 			GPIO.setStable_Ack();
 			String devName = request.getParameter("addDev");
-			GPIO.sendInts(GPIO.turnStringtoInt(devName));
+			GPIO.sendInts(GPIO.turnStringtoInt(GPIO.make16Chars(devName)));
 			GPIO.pSetupRecieve();
 			GPIO.waitAck_Stable();
 			int id = GPIO.getIntInput();
@@ -87,9 +87,5 @@ public class Device extends HttpServlet{
 		} else {
 			System.out.println("PANIEK PANIEK PANIEK ER IS IETS OF IEMAND FOUT BEZIGN OMG OMG OMG ABORT ABORT ABORT");
 		}
-		
-		
-		
-		//response.sendRedirect(response.encodeURL(request.getHeader("Referer")));
 	}
 }
