@@ -43,18 +43,19 @@
                 </ul>
             </li>
             <li><a href="./Logout">Logout</a>
-            <a class="element place-right" href="#"><div class="times" data-role="times" style="font-size:100%"></div></a>
+            <li><a class="element place-right" href="#"><div class="times" data-role="times" style="font-size:100%"></div></a></li>
     	</ul>
     </nav>	
 </nav>
 
 <!-- Body -->
 <div class="grid" style="margin-left:2%;margin-top:5%">
+<div class="container">
 	<form method="post" action="Blink">
 		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT1" style="font-size:320%; height:200px; width:45%;">
 		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT2" style="font-size:320%; height:200px; width:45%;">
 	</form>
-
+</div>
 </div>
 </body>
 </html>
