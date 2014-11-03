@@ -1,6 +1,6 @@
-<% //if (request.getSession().getAttribute("sessionId") == null) {
-	//response.sendRedirect(response.encodeURL("./Login"));
-	//}%>
+<% /*if (request.getSession().getAttribute("sessionId") == null) {
+	response.sendRedirect(response.encodeURL("./Login"));
+	}*/%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,7 +17,7 @@
 </head>
 <body class="metro">
 <!-- Header -->
-<nav class="navigation-bar dark shadow fixed-top">
+<nav class="navigation-bar dark shadow">
 <div class="navbar-header">
                 <div class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">          
                     <span class="icon-bar"></span>
@@ -63,7 +63,7 @@
         					<p><input name="nActId" type="text" data-state="info"></p>
         					<p>Fill in the name of the action <br>that should be added.<p>
         					<p><input name="nActNam" type="text" data-state="info"></p>
-        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Record" style="font-size:100%; height:175%; width:63%;"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Record" style="font-size:100%; height:45px; width:63%;"></p>
         				</div>
 					</div>
 				</div></div>
@@ -76,7 +76,7 @@
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the action <br>that should be removed.<p>
         					<p><input name="actId" type="text" data-state="info"></p>
-        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove" style="font-size:100%; height:175%; width:63%;"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove" style="font-size:100%; height:45px; width:63%;"></p>
         				</div>
 					</div></div>
 				</div>
@@ -88,7 +88,7 @@
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the action <br>that should be executed.<p>
         					<p><input name="actIdexe" type="text" data-state="info"></p>
-        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Execute" style="font-size:100%; height:175%; width:63%;"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Execute" style="font-size:100%; height:45px; width:63%;"></p>
         				</div>
 					</div>
 				</div>

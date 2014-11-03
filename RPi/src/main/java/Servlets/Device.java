@@ -3,6 +3,8 @@ package Servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,16 +25,24 @@ public class Device extends HttpServlet{
 		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL(request.getHeader("Referer"))); 
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
-			System.out.println(action);
+			/*System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setDevice();
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
-			HashMap<Integer, String> lijst = GPIO.getList();
+			Map<Integer, String> lijst = GPIO.getList();
 			//TODO doe iets met lijst
-			GPIO.pSetupSend();
+			GPIO.pSetupSend();*/
+			Map<Integer, String> examp = new TreeMap<Integer, String>(); 
+			examp.put(1, "TV");
+			examp.put(2, "DVD");
+			examp.put(3, "RADIO");
+			examp.put(4, "PS3");
+			examp.put(5, "IRontvangerofo weet ik veel");
+			request.setAttribute("actionList", examp);
+			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 		} else if (action.equals("Remove")) {
 			System.out.println(action);
 			GPIO.pSetupSend();
@@ -81,6 +91,6 @@ public class Device extends HttpServlet{
 		
 		
 		
-		response.sendRedirect(response.encodeURL(request.getHeader("Referer")));
+		//response.sendRedirect(response.encodeURL(request.getHeader("Referer")));
 	}
 }

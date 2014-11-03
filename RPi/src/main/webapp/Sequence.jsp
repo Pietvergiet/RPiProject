@@ -1,4 +1,4 @@
-<%/*if (request.getSession().getAttribute("sessionId") == null) {
+<%/* if (request.getSession().getAttribute("sessionId") == null) {
 	response.sendRedirect(response.encodeURL("./Login"));
 	}*/%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
