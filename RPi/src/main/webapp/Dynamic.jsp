@@ -198,7 +198,7 @@
 					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Remove Action">
 					</div>
 					<input type="hidden" name="seqIdArem" value="<%=f.getKey() %>">
-					<input type="hidden" name="seqId" value="<%=e.getKey() %>">
+					<input type="hidden" name="iNr" value="<%=e.getKey() %>">
 					</div>
 					</form>
 	<% }%>
