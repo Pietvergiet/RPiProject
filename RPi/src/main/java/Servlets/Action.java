@@ -25,7 +25,7 @@ public class Action extends HttpServlet{
 		//GPIO.setUnstable_Ack();
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
-			System.out.println(action);
+			/*System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setList();
@@ -33,14 +33,14 @@ public class Action extends HttpServlet{
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
 			Map<Integer, String> lijst = GPIO.getList();
-			GPIO.pSetupSend();
-			/*Map<Integer, String> examp = new TreeMap<Integer, String>(); 
+			GPIO.pSetupSend();*/
+			Map<Integer, String> examp = new TreeMap<Integer, String>(); 
 			examp.put(1, "AAN/UIT");
 			examp.put(2, "Next");
 			examp.put(3, "PREV");
 			examp.put(4, "Harder");
-			examp.put(5, "Zachter");*/
-			request.setAttribute("actionList", lijst);
+			examp.put(5, "Zachter");
+			request.setAttribute("actionList", examp);
 			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 		} else if (action.equals("Remove")) {
 			System.out.println(action);

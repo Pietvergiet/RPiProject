@@ -158,7 +158,7 @@
 					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Remove">
 					</div>
 					<div class="span1">
-					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="List Action">
+					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="List Actions">
 					</div>
 					<div class="span1">
 					<input class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" name="button" value="Execute">
