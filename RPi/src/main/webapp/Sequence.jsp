@@ -12,6 +12,8 @@
         <script src="BootstrapMetro/docs/js/jquery/jquery.widget.min.js"></script>
         <script src="BootstrapMetro/min/metro.min.js"></script>
         <link rel="shortcut icon" href="images/remote_control.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 	    <title>SuperRemotely</title>
 
 </head>
@@ -49,9 +51,14 @@
 
 <!-- Body -->
 <div class="grid" style="margin-left:2%;margin-top:5%">
+<div class="grid">
 	<form method="post" action="doSequence">
 			<div class="row" >
 				<div class="span4"><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List all sequences			" style="font-size:150%; height:45px; width:100%;"></div>
+					</div>	
+			</div>
+			<div class="row">	
+				<div class="span4">
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
 					<div class="accordion-frame" style="font-size:150%;">
@@ -62,8 +69,10 @@
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List Actions" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
-				</div>			
-			</div>
+				</div>	
+				</div>
+				</div>		
+			<div class="span4">
 			<div class="row">	
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
@@ -76,6 +85,10 @@
         				</div>
 					</div>
 				</div>
+				</div>
+				</div>
+				<div class="span4">
+				<div class="row">
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
 					<div class="accordion-frame" style="font-size:150%;">
@@ -90,6 +103,8 @@
 					</div>
 				</div>
 			</div>
+			</div>
+			<div class="span4">
 			<div class="row">	
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
@@ -102,6 +117,11 @@
         				</div>
 					</div>
 				</div>
+				</div>
+				</div>
+				
+				<div class="span4">
+				<div class="row">
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
 					<div class="accordion-frame" style="font-size:150%;">
@@ -119,7 +139,9 @@
         				</div>
 					</div>
 				</div>
+			</div>
 			</div>	
+			<div class="span4">
 			<div class="row">	
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
@@ -133,6 +155,7 @@
 					</div>
 				</div>
 			</div>	
+			</div>
 		</form>
 </div>
 

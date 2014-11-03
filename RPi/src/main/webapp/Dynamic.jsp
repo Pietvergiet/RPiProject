@@ -1,6 +1,6 @@
-<% if (request.getSession().getAttribute("sessionId") == null) {
+<% /*if (request.getSession().getAttribute("sessionId") == null) {
 	response.sendRedirect("./Login");
-	}%>
+	}*/%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,13 +12,22 @@
         <script src="BootstrapMetro/docs/js/jquery/jquery.widget.min.js"></script>
         <script src="BootstrapMetro/min/metro.min.js"></script>
         <link rel="shortcut icon" href="images/remote_control.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 	    <title>SuperRemotely</title>
 
 </head>
 <body class="metro">
 <div class="container">
 <!-- Header -->
-<nav class="navigation-bar dark fixed-top">
+<nav class="navigation-bar dark shadow">
+<div class="navbar-header">
+                <div class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">          
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </div>
+                </div>
 	<nav class="navigation-bar-content">
         <ul class="element-menu">
         	<li><a href="/RPi">Home</a></li>
@@ -41,7 +50,7 @@
 
 <!-- Body -->
 
-<div class="grid" style="margin-left:1%;margin-top:3%">
+<div class="grid" style="margin-left:2%;margin-top:5%">
 	<%@ page import="java.util.*"%>
 	<%
 		int elem = 0;

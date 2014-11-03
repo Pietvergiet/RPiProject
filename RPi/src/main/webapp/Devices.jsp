@@ -11,7 +11,9 @@
         <script src="BootstrapMetro/docs/js/jquery/jquery.min.js"></script>
         <script src="BootstrapMetro/docs/js/jquery/jquery.widget.min.js"></script>
         <script src="BootstrapMetro/min/metro.min.js"></script>
-        <link rel="shortcut icon" href="images/remote_control.ico" />	    
+        <link rel="shortcut icon" href="images/remote_control.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">	    
 		<title>SuperRemotely</title>
 </head>
 <body class="metro">
@@ -44,11 +46,7 @@
 </nav>
 
 <!-- Body -->
-<<<<<<< HEAD
 <div class="grid" style="margin-left:2%;margin-top:5%">
-=======
-<div class="grid" style="margin-left:1%;margin-top:3%">
->>>>>>> branch 'master' of https://github.com/Pietvergiet/RPiProject
 
 	<div class="grid">
 	    
@@ -83,8 +81,7 @@
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
-				</div>
-			</div>		
+				</div></div>		
 		</form>
 	</div>
 </div>

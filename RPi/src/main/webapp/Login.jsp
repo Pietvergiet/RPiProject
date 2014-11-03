@@ -12,6 +12,8 @@
         <script src="BootstrapMetro/docs/js/jquery/jquery.widget.min.js"></script>
         <script src="BootstrapMetro/min/metro.min.js"></script>
         <link rel="shortcut icon" href="images/remote_control.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 	    <title>SuperRemotely</title>
 
 </head>
@@ -78,12 +80,8 @@
 
 $(function() {
     $('form').each(function() {
-<<<<<<< HEAD
-    	alert("hoi");
-=======
->>>>>>> branch 'master' of https://github.com/Pietvergiet/RPiProject
         $(this).find('input').keypress(function(e) {
-            // Enter pressed?
+            //Enter pressed?
             if(e.which == 10 || e.which == 13) {
                 this.form.submit();
             }
