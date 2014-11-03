@@ -1,6 +1,6 @@
-<%/* if (request.getSession().getAttribute("sessionId") != null) {
+<% if (request.getSession().getAttribute("sessionId") != null) {
 	response.sendRedirect(".");
-	}*/%>
+	}%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,14 +17,7 @@
 </head>
 <body class="metro">
 <!-- Header -->
-<nav class="navigation-bar dark shadow">
-<div class="navbar-header">
-                <div class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">          
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </div>
-                </div>
+<nav class="navigation-bar dark fixed-top">
 	<nav class="navigation-bar-content">
         <ul class="element-menu">
         	<li><a href="/RPi">Home</a></li>
@@ -47,7 +40,7 @@
 </nav>
 
 <!-- Body -->
-<div class="grid" style="margin-left:2%;margin-top:5%">
+<div class="grid" style="margin-left:20px;margin-top:60px">
 	<form method="post" action="doLogin" >
 		<input type="password" name="pass">
 		<input type="submit">
