@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import Gpio.GPIO;
+
 
 public class Validate {
 		
@@ -11,6 +13,7 @@ public class Validate {
 	public boolean checkUser(String pass) {
 		MessageDigest messageDigest;
 		String cit = "citroentaart";
+		//String cit = GPIO.getPass();
 		String encryptedString = null;
 		String passw = null;
 		try {

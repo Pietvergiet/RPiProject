@@ -1,23 +1,17 @@
 package Gpio;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.pi4j.io.gpio.GpioPinDigitalMultipurpose;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinMode;
 import com.pi4j.io.gpio.PinPullResistance;
-import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
-import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 public class GPIO {
-
+	
 	public static final GpioController gpio = GpioFactory.getInstance();
 	public static final GpioPinDigitalMultipurpose pin[] = { 
 		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_00, "Send", PinMode.DIGITAL_OUTPUT, PinPullResistance.PULL_DOWN),
@@ -33,7 +27,8 @@ public class GPIO {
 		gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_10, "Data", PinMode.DIGITAL_OUTPUT, PinPullResistance.PULL_DOWN)
 	};
 	public static boolean send = true;
-
+	
+	
 	public static GpioPinDigitalMultipurpose[] getMPins() {
 		return pin;
 	}
@@ -267,9 +262,9 @@ public class GPIO {
 			boolean stand[] = intToBool(chars[i]);
 			for(int j = 0; j < stand.length; j++) {
 				if(stand[j]) {
-					pin[10-j].high();
+					pin[j+3].high();
 				} else {
-					pin[10-j].low();
+					pin[j+3].low();
 				}
 				
 			}
@@ -286,7 +281,7 @@ public class GPIO {
 
 		    boolean[] bits = new boolean[8];
 		    for (int i = 7; i >= 0; i--) {
-		        bits[i] = (input & (1 << i)) != 0;
+		        bits[7-i] = (input & (1 << i)) != 0;
 		    }
 		    
 		    return bits;
@@ -496,23 +491,6 @@ public class GPIO {
 		return vol.toString();
 	}
 
-	public static void main(String[] arg) {
-		
-		//Sending Data
-		//When ack pin is receiving a 1 turn stable pin off
-		pin[2].addListener(new GpioPinListenerDigital() {
-
-			@Override
-			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				if (send && event.getState() == PinState.HIGH && pin[1].isHigh()) {
-					System.out.println("stabel pin is out");
-					pin[1].low();
-				} else if (!send && event.getState() == PinState.LOW) {
-					pin[1].low();
-				}
-			}            
-		});
-	}
 
 
 

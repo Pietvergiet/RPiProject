@@ -2,7 +2,6 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -26,15 +25,14 @@ public class Alarm extends HttpServlet {
 		GPIO.pSetupSend();*/
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
-			/*GPIO.setAlarm();
+			GPIO.setAlarm();
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
 			Map<Integer, String[]> lijst = GPIO.getAlarmList();
-			//TODO doe iets met lijst
-			GPIO.pSetupSend();*/
-			Map<Integer, String[]> examp = new TreeMap<Integer, String[]>();
+			GPIO.pSetupSend();
+			/*Map<Integer, String[]> examp = new TreeMap<Integer, String[]>();
 			String id = "5";
 			String tijd = "12:30";
 			String name = "uitslapen";
@@ -43,8 +41,8 @@ public class Alarm extends HttpServlet {
 			examp.put(2, arrr);
 			examp.put(3, arrr);
 			examp.put(4, arrr);
-			examp.put(5, arrr);
-			request.setAttribute("alarmList", examp);
+			examp.put(5, arrr);*/
+			request.setAttribute("alarmList", lijst);
 			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 			
 		} else if (action.equals("Add")) {
@@ -64,7 +62,6 @@ public class Alarm extends HttpServlet {
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
-			out.println("window.open('Alarm', '_parent');");
 			out.println("</script>");
 
 			rd.include(request, response);
@@ -84,7 +81,6 @@ public class Alarm extends HttpServlet {
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
-			out.println("window.open('Alarm', '_parent');");
 			out.println("</script>");
 
 			rd.include(request, response);

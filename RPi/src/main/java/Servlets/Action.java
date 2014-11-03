@@ -2,9 +2,7 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,26 +23,28 @@ public class Action extends HttpServlet{
 		//GPIO.setUnstable_Ack();
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
-			/*System.out.println(action);
+			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
+			String devId = request.getParameter("devId");
+			GPIO.sendInts(GPIO.turnStringtoInt(devId));
 			GPIO.pSetupRecieve();
 			Map<Integer, String> lijst = GPIO.getList();
-			GPIO.pSetupSend();*/
-			Map<Integer, String> examp = new TreeMap<Integer, String>(); 
+			GPIO.pSetupSend();
+			/*Map<Integer, String> examp = new TreeMap<Integer, String>(); 
 			examp.put(1, "AAN/UIT");
 			examp.put(2, "Next");
 			examp.put(3, "PREV");
 			examp.put(4, "Harder");
-			examp.put(5, "Zachter");
-			request.setAttribute("actionList", examp);
+			examp.put(5, "Zachter");*/
+			request.setAttribute("actionList", lijst);
 			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 		} else if (action.equals("Remove")) {
 			System.out.println(action);
-			/*GPIO.pSetupSend();
+			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setRemove();
 			GPIO.setStable_Ack();
@@ -55,8 +55,8 @@ public class Action extends HttpServlet{
 			GPIO.waitAck_Stable();
 			String s = GPIO.getSucces();
 			GPIO.sendAck();
-			GPIO.pSetupSend();*/
-			String s = "Act id: " + request.getParameter("actId");
+			GPIO.pSetupSend();
+			//String s = "Act id: " + request.getParameter("actId");
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
@@ -64,7 +64,7 @@ public class Action extends HttpServlet{
 
 			rd.include(request, response);
 		} else if (action.equals("Record")) {
-			/*System.out.println(action);
+			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setAdd();
@@ -79,8 +79,8 @@ public class Action extends HttpServlet{
 			GPIO.waitAck_Stable();
 			int id = GPIO.getIntInput();
 			GPIO.sendAck();
-			GPIO.pSetupSend();*/
-			String id = request.getParameter("nActId") + " --- " + request.getParameter("nActNam");
+			GPIO.pSetupSend();
+			//String id = request.getParameter("nActId") + " --- " + request.getParameter("nActNam");
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + id + " is het nieuwe action id!');");
@@ -88,7 +88,7 @@ public class Action extends HttpServlet{
 
 			rd.include(request, response);
 		} else if (action.equals("Execute")) {
-			/*System.out.println(action);
+			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setExecute();
@@ -101,8 +101,8 @@ public class Action extends HttpServlet{
 			GPIO.waitAck_Stable();
 			String s = GPIO.getSucces();
 			GPIO.sendAck();
-			GPIO.pSetupSend();*/
-			String s = request.getParameter("actIdexe");
+			GPIO.pSetupSend();
+			//String s = request.getParameter("actIdexe");
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
