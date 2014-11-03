@@ -78,7 +78,10 @@
 
 $(function() {
     $('form').each(function() {
+<<<<<<< HEAD
     	alert("hoi");
+=======
+>>>>>>> branch 'master' of https://github.com/Pietvergiet/RPiProject
         $(this).find('input').keypress(function(e) {
             // Enter pressed?
             if(e.which == 10 || e.which == 13) {

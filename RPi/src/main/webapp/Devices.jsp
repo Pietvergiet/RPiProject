@@ -44,7 +44,11 @@
 </nav>
 
 <!-- Body -->
+<<<<<<< HEAD
 <div class="grid" style="margin-left:2%;margin-top:5%">
+=======
+<div class="grid" style="margin-left:1%;margin-top:3%">
+>>>>>>> branch 'master' of https://github.com/Pietvergiet/RPiProject
 
 	<div class="grid">
 	    

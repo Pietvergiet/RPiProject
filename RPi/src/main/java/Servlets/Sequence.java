@@ -35,6 +35,7 @@ public class Sequence extends HttpServlet{
 			GPIO.sendInts(sId);
 			GPIO.pSetupRecieve();
 			Map<Integer, TreeMap<Integer,String>> lijst = GPIO.getActionList();
+<<<<<<< HEAD
 			//TODO doe iets met lijst
 			GPIO.pSetupSend();*/
 			Map<Integer, Map<Integer, String>> exampl = new TreeMap<Integer, Map<Integer, String>>();
@@ -47,6 +48,19 @@ public class Sequence extends HttpServlet{
 			exampl.put(4, examp);
 			exampl.put(5, examp);
 			request.setAttribute("seqActList", exampl);
+=======
+			GPIO.pSetupSend();
+			/*Map<Integer, Map<Integer, String>> exampl = new TreeMap<Integer, Map<Integer, String>>();
+			Map<Integer, String> examp = new TreeMap<Integer, String>(); 
+			
+			examp.put(4, "Harder");
+			exampl.put(1, examp);
+			exampl.put(2, examp);
+			exampl.put(3, examp);
+			exampl.put(4, examp);
+			exampl.put(5, examp);*/
+			request.setAttribute("seqActList", lijst);
+>>>>>>> branch 'master' of https://github.com/Pietvergiet/RPiProject
 			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 		} else if (action.contains("List")) {
 			/*GPIO.setSeq();
@@ -55,6 +69,7 @@ public class Sequence extends HttpServlet{
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
 			Map<Integer, String> lijst = GPIO.getList();
+<<<<<<< HEAD
 			//TODO doe iets met lijst
 			GPIO.pSetupSend();*/
 			Map<Integer, String> examp = new TreeMap<Integer, String>(); 
@@ -64,6 +79,16 @@ public class Sequence extends HttpServlet{
 			examp.put(4, "Harder");
 			examp.put(5, "Zachter");
 			request.setAttribute("seqActList", examp);
+=======
+			GPIO.pSetupSend();
+			/*Map<Integer, String> examp = new TreeMap<Integer, String>(); 
+			examp.put(1, "AAN/UIT");
+			examp.put(2, "Next");
+			examp.put(3, "PREV");
+			examp.put(4, "Harder");
+			examp.put(5, "Zachter");*/
+			request.setAttribute("seqActList", lijst);
+>>>>>>> branch 'master' of https://github.com/Pietvergiet/RPiProject
 			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 		} else if (action.equals("Remove Action")) {
 			GPIO.setSeq();

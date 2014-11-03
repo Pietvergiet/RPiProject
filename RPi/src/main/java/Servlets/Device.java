@@ -33,6 +33,7 @@ public class Device extends HttpServlet{
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
 			Map<Integer, String> lijst = GPIO.getList();
+<<<<<<< HEAD
 			//TODO doe iets met lijst
 			GPIO.pSetupSend();*/
 			Map<Integer, String> examp = new TreeMap<Integer, String>(); 
@@ -42,6 +43,16 @@ public class Device extends HttpServlet{
 			examp.put(4, "PS3");
 			examp.put(5, "IRontvangerofo weet ik veel");
 			request.setAttribute("actionList", examp);
+=======
+			GPIO.pSetupSend();
+			/*Map<Integer, String> examp = new TreeMap<Integer, String>(); 
+			examp.put(1, "TV");
+			examp.put(2, "DVD");
+			examp.put(3, "RADIO");
+			examp.put(4, "PS3");
+			examp.put(5, "IRontvangerofo weet ik veel");*/
+			request.setAttribute("actionList", lijst);
+>>>>>>> branch 'master' of https://github.com/Pietvergiet/RPiProject
 			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 		} else if (action.equals("Remove")) {
 			System.out.println(action);
