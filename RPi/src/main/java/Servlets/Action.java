@@ -29,6 +29,8 @@ public class Action extends HttpServlet{
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
+			String devId = request.getParameter("devId");
+			GPIO.sendInts(GPIO.turnStringtoInt(devId));
 			GPIO.pSetupRecieve();
 			Map<Integer, String> lijst = GPIO.getList();
 			GPIO.pSetupSend();

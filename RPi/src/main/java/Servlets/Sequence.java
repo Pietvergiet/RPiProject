@@ -17,7 +17,7 @@ import Gpio.GPIO;
 @WebServlet("/doSequence")
 @SuppressWarnings("serial")
 public class Sequence extends HttpServlet{
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL("/Sequence"));
@@ -36,7 +36,7 @@ public class Sequence extends HttpServlet{
 			GPIO.pSetupSend();
 			/*Map<Integer, Map<Integer, String>> exampl = new TreeMap<Integer, Map<Integer, String>>();
 			Map<Integer, String> examp = new TreeMap<Integer, String>(); 
-			
+
 			examp.put(4, "Harder");
 			exampl.put(1, examp);
 			exampl.put(2, examp);
@@ -114,9 +114,15 @@ public class Sequence extends HttpServlet{
 			int iNrA = Integer.parseInt(request.getParameter("iNrA"));
 			int inNrA[] = {iNrA};
 			GPIO.sendInts(inNrA);
-			int actIDadd = Integer.parseInt(request.getParameter("actIDadd"));
-			int aIDadd[] = {actIDadd};
-			GPIO.sendInts(aIDadd);
+			if (request.getParameterValues("delay") != null) {
+				int delayTime = Integer.parseInt(request.getParameter("delayTime"));
+				int dTime[] = {128+delayTime};
+				GPIO.sendInts(dTime);
+			} else {
+				int actIDadd = Integer.parseInt(request.getParameter("actIDadd"));
+				int aIDadd[] = {actIDadd};
+				GPIO.sendInts(aIDadd);
+			}
 			GPIO.pSetupRecieve();
 			GPIO.waitAck_Stable();
 			String s = GPIO.getSucces();
@@ -166,6 +172,6 @@ public class Sequence extends HttpServlet{
 
 			rd.include(request, response);
 		}
-	
+
 	}	
 }
