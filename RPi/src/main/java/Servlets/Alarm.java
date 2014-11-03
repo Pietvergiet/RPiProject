@@ -26,12 +26,27 @@ public class Alarm extends HttpServlet {
 		GPIO.pSetupSend();*/
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
-			GPIO.setAlarm();
+			/*GPIO.setAlarm();
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
 			Map<Integer, String[]> lijst = GPIO.getAlarmList();
+<<<<<<< HEAD
+			//TODO doe iets met lijst
+			GPIO.pSetupSend();*/
+			Map<Integer, String[]> examp = new TreeMap<Integer, String[]>();
+			String id = "5";
+			String tijd = "12:30";
+			String name = "uitslapen";
+			String[] arrr = {tijd, id, name};
+			examp.put(1, arrr);
+			examp.put(2, arrr);
+			examp.put(3, arrr);
+			examp.put(4, arrr);
+			examp.put(5, arrr);
+			request.setAttribute("alarmList", examp);
+=======
 			GPIO.pSetupSend();
 			/*Map<Integer, String[]> examp = new TreeMap<Integer, String[]>();
 			String id = "5";
@@ -44,6 +59,7 @@ public class Alarm extends HttpServlet {
 			examp.put(4, arrr);
 			examp.put(5, arrr);*/
 			request.setAttribute("alarmList", lijst);
+>>>>>>> branch 'master' of https://github.com/Pietvergiet/RPiProject
 			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 			
 		} else if (action.equals("Add")) {
