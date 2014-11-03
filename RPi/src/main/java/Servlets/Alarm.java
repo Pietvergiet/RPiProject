@@ -2,7 +2,6 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -64,7 +63,6 @@ public class Alarm extends HttpServlet {
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
-			out.println("window.open('Alarm', '_parent');");
 			out.println("</script>");
 
 			rd.include(request, response);
@@ -84,7 +82,6 @@ public class Alarm extends HttpServlet {
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
-			out.println("window.open('Alarm', '_parent');");
 			out.println("</script>");
 
 			rd.include(request, response);
