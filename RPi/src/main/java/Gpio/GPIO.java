@@ -247,12 +247,16 @@ public class GPIO {
 	
 	@SuppressWarnings("unused")
 	public static void sendAck() {
-		if (!send && pin[2].isHigh()) {
-			setStable_Ack();
+		if (!send) {
+			while (pin[1].isLow()) {
+				pin[1].high();
+			}
 			while(pin[2].isHigh()) {
 				int t = 0;
 			}
-			setUnstable_Ack();
+			while (pin[1].isHigh()) {
+				pin[1].low();
+			}
 		}
 	}
 	

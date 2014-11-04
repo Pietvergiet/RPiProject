@@ -59,9 +59,8 @@ public class Device extends HttpServlet{
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
-			out.println("window.open('Device', '_parent');");
 			out.println("</script>");
-
+			out.println(s);
 			rd.include(request, response);
 		} else if (action.equals("Add")) {
 			System.out.println(action);
@@ -79,9 +78,8 @@ public class Device extends HttpServlet{
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + id + " is het nieuwe device id!');");
-			out.println("window.open('Device', '_parent');");
 			out.println("</script>");
-
+			out.println(id + " is het nieuwe device id!");
 			rd.include(request, response);
 		} else {
 			System.out.println("PANIEK PANIEK PANIEK ER IS IETS OF IEMAND FOUT BEZIGN OMG OMG OMG ABORT ABORT ABORT");

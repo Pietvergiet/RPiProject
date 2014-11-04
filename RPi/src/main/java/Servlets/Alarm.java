@@ -3,8 +3,6 @@ package Servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
-import java.util.TreeMap;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,6 +61,7 @@ public class Alarm extends HttpServlet {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
 			out.println("</script>");
+			out.println(s);
 
 			rd.include(request, response);
 		} else if (action.equals("Remove")) {
@@ -82,6 +81,7 @@ public class Alarm extends HttpServlet {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
 			out.println("</script>");
+			out.println(s);
 
 			rd.include(request, response);
 		}
