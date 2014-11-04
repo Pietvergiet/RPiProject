@@ -44,6 +44,7 @@
                     <li><a href="#Edit">Remove an action</a></li>
                 </ul>
             </li>
+            <li><a class="element place-right" href="#"><div class="times" data-role="times" style="font-size:100%"></div></a></li>
     	</ul>
     </nav>	
 </nav>
