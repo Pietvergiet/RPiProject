@@ -55,7 +55,6 @@
 	<form method="post" action="doSequence">
 			<div class="row" >
 				<div class="span4"><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List all sequences			" style="font-size:150%; height:45px; width:100%;"></div>
-					</div>	
 			</div>
 			<div class="row">	
 				<div class="span4">
@@ -71,8 +70,7 @@
 					</div>
 				</div>	
 				</div>
-				</div>		
-			<div class="span4">
+			</div>		
 			<div class="row">	
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
@@ -85,10 +83,8 @@
         				</div>
 					</div>
 				</div>
-				</div>
-				</div>
-				<div class="span4">
-				<div class="row">
+			</div>
+			<div class="row">
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
 					<div class="accordion-frame" style="font-size:150%;">
@@ -103,8 +99,6 @@
 					</div>
 				</div>
 			</div>
-			</div>
-			<div class="span4">
 			<div class="row">	
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
@@ -117,18 +111,16 @@
         				</div>
 					</div>
 				</div>
-				</div>
-				</div>
-				
-				<div class="span4">
-				<div class="row">
+			</div>
+			<div class="row">
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
 					<div class="accordion-frame" style="font-size:150%;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add an action to sequence</a>
        	 				<div class="content" style="display: none;">
        	 					<p>Insert Delay Time</p>
-       	 					<p><input name="delay" type="checkbox"></p>
+       	 					<p><input name="delay" type="checkbox" ></p>
+       	 					<p><input name="delayTime" type="text"></p>
        	 					<p>Fill in the ID of the sequence <br>that an action should be added to.</p>
         					<p><input name="seqIdAadd" type="text" data-state="info"></p>
         					<p>Fill in the index nr of the action <br>that should be added.<p>
@@ -140,8 +132,6 @@
 					</div>
 				</div>
 			</div>
-			</div>	
-			<div class="span4">
 			<div class="row">	
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
                 
@@ -155,9 +145,8 @@
 					</div>
 				</div>
 			</div>	
-			</div>
-		</form>
+	</form>
 </div>
-
+</div>
 </body>
 </html>

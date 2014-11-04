@@ -82,7 +82,7 @@ public class Sequence extends HttpServlet{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
 			out.println("</script>");
-
+			out.println(s);
 			rd.include(request, response);
 		} else if (action.equals("Remove")) {
 			GPIO.setSeq();
@@ -101,6 +101,7 @@ public class Sequence extends HttpServlet{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
 			out.println("</script>");
+			out.println(s);
 
 			rd.include(request, response);
 		} else if (action.equals("Add Action")) {
@@ -132,6 +133,7 @@ public class Sequence extends HttpServlet{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
 			out.println("</script>");
+			out.println(s);
 
 			rd.include(request, response);
 		} else if (action.equals("Add")) {
@@ -150,6 +152,7 @@ public class Sequence extends HttpServlet{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + id + " is het nieuwe sequence id!');");
 			out.println("</script>");
+			out.println(id + " is het nieuwe sequence id!");
 
 			rd.include(request, response);
 		} else if (action.equals("Execute")) {
@@ -169,7 +172,7 @@ public class Sequence extends HttpServlet{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
 			out.println("</script>");
-
+			out.println(s);
 			rd.include(request, response);
 		}
 

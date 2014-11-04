@@ -25,8 +25,6 @@ public class Login extends HttpServlet{
 			session.setMaxInactiveInterval(30*60);
 			response.sendRedirect(response.encodeURL("./"));
 		} else {
-			System.out.println("nietyay");
-
 			RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL("./")); 
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");

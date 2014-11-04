@@ -55,9 +55,18 @@
 	    
 		<form method="post" action="doAction">
 			<div class="row" >
-				<div class="span4"><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List all actions			" style="font-size:150%; height:45px; width:100%;"></div>
-					</div>	
-			</div>
+				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
+                
+					<div class="accordion-frame" style="font-size:150%;">
+    					<a class="heading bg-lightBlue fg-white collapsed" href="#">List all device actions</a>
+       	 				<div class="content" style="display: none;">
+        					<p>Fill in the ID of the device.<p>
+        					<p><input name="devId" type="text" data-state="info"></p>
+        					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List" style="font-size:100%; height:45px; width:63%;"></p>
+        				</div>
+					</div>
+				</div>
+			</div>	
 			<div class="row">	
 				<div class="span5">
 				<div class="accordion with-marker span4 place-left" data-role="accordion" data-closeany="false">
