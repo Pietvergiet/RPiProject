@@ -20,8 +20,16 @@ public class Sequence extends HttpServlet{
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
-		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL("/Sequence"));
-		//GPIO.setUnstable_Ack();
+		RequestDispatcher rd;
+		int length = 0;
+		if (request.getParameter("dynamic") != null) {
+			length = Integer.parseInt(request.getParameter("length"));
+			rd = request.getRequestDispatcher("/Dynamic.jsp");
+			//System.out.println("Dynamic");
+		} else {
+			rd = request.getRequestDispatcher(response.encodeRedirectURL("/Action"));
+			//System.out.println("not dynamic");
+		}
 		String action = (String) request.getParameter("button");
 		if (action.equals("List Actions")) {
 			GPIO.setSeq();
@@ -83,7 +91,14 @@ public class Sequence extends HttpServlet{
 			out.println("alert('" + s + "');");
 			out.println("</script>");
 			out.println(s);
-			rd.include(request, response);
+			if (request.getParameter("dynamic") == null) {
+				rd.include(request, response);
+			} else {
+				request.setAttribute("succes", s);
+				request.setAttribute("seqActList", getActMap(length, request));
+				System.out.println(getActMap(length, request).entrySet());
+				rd.forward(request, response);
+			}
 		} else if (action.equals("Remove")) {
 			GPIO.setSeq();
 			GPIO.setRemove();
@@ -97,13 +112,21 @@ public class Sequence extends HttpServlet{
 			String s = GPIO.getSucces();
 			GPIO.sendAck();
 			GPIO.pSetupSend();
+			//String s = request.getParameter("seqIdrem");
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
 			out.println("</script>");
 			out.println(s);
 
-			rd.include(request, response);
+			if (request.getParameter("dynamic") == null) {
+				rd.include(request, response);
+			} else {
+				request.setAttribute("succes", s);
+				request.setAttribute("seqList", getMap(length, request));
+				System.out.println(getMap(length, request).entrySet());
+				rd.forward(request, response);
+			}
 		} else if (action.equals("Add Action")) {
 			GPIO.setSeq();
 			GPIO.setSeqAddAct();
@@ -168,13 +191,40 @@ public class Sequence extends HttpServlet{
 			String s = GPIO.getSucces();
 			GPIO.sendAck();
 			GPIO.pSetupSend();
+			//String s = request.getParameter("seqIdrem");
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + s + "');");
 			out.println("</script>");
 			out.println(s);
-			rd.include(request, response);
+			if (request.getParameter("dynamic") == null) {
+				rd.include(request, response);
+			} else {
+				request.setAttribute("succes", s);
+				request.setAttribute("seqList", getMap(length, request));
+				System.out.println(getMap(length, request).entrySet());
+				rd.forward(request, response);
+			}
 		}
 
 	}	
+	
+	public Map<Integer, String> getMap(int length, HttpServletRequest request) {
+		Map<Integer, String> map = new TreeMap<Integer, String>();
+		for(int i = 1; i <= length; i++) {
+			map.put(Integer.parseInt(request.getParameter("key" + i)), request.getParameter("value" + i));
+		}
+		return map;
+	}
+	
+	public Map<Integer, Map<Integer, String>> getActMap(int length, HttpServletRequest request) {
+		Map<Integer, Map<Integer, String>> map = new TreeMap<Integer, Map<Integer, String>>();
+		
+		for(int i = 1; i <= length; i++) {
+			Map<Integer, String> acts = new TreeMap<Integer, String>();
+			acts.put(Integer.parseInt(request.getParameter("key" + i)), request.getParameter("value" + i));
+			map.put(Integer.parseInt(request.getParameter("index" + i)), acts);
+		}
+		return map;
+	}
 }

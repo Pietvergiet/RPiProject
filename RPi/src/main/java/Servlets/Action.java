@@ -3,6 +3,7 @@ package Servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,10 +17,19 @@ import Gpio.GPIO;
 @WebServlet("/doAction")
 @SuppressWarnings("serial")
 public class Action extends HttpServlet{
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html;charset=UTF-8");
-		RequestDispatcher rd = request.getRequestDispatcher(response.encodeRedirectURL("/Action")); 
+		RequestDispatcher rd;
+		int length = 0;
+		if (request.getParameter("dynamic") != null) {
+			length = Integer.parseInt(request.getParameter("length"));
+			rd = request.getRequestDispatcher("/Dynamic.jsp");
+			//System.out.println("Dynamic");
+		} else {
+			rd = request.getRequestDispatcher(response.encodeRedirectURL("/Action"));
+			//System.out.println("not dynamic");
+		}
 		//GPIO.setUnstable_Ack();
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
@@ -34,7 +44,7 @@ public class Action extends HttpServlet{
 			GPIO.pSetupRecieve();
 			Map<Integer, String> lijst = GPIO.getList();
 			GPIO.pSetupSend();
-			/*Map<Integer, String> examp = new TreeMap<Integer, String>(); 
+			/*Map<Integer, String> examp = new TreeMap<Integer, String>();
 			examp.put(1, "AAN/UIT");
 			examp.put(2, "Next");
 			examp.put(3, "PREV");
@@ -43,7 +53,7 @@ public class Action extends HttpServlet{
 			request.setAttribute("actionList", lijst);
 			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 		} else if (action.equals("Remove")) {
-			System.out.println(action);
+			//System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setRemove();
@@ -63,10 +73,16 @@ public class Action extends HttpServlet{
 			out.println("alert('" + s + "');");
 			out.println("</script>");
 			out.println(s);
-
-			rd.include(request, response);
+			if (request.getParameter("dynamic") == null) {
+				rd.include(request, response);
+			} else {
+				request.setAttribute("succes", s);
+				request.setAttribute("actionList", getMap(length, request));
+				//System.out.println(getMap(length, request).entrySet());
+				rd.forward(request, response);
+			}
 		} else if (action.equals("Record")) {
-			System.out.println(action);
+			//System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setAdd();
@@ -90,7 +106,7 @@ public class Action extends HttpServlet{
 			out.println(id + "is het nieuwe device id!");
 			rd.include(request, response);
 		} else if (action.equals("Execute")) {
-			System.out.println(action);
+			//System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setExecute();
@@ -110,13 +126,29 @@ public class Action extends HttpServlet{
 			out.println("alert('" + s + "');");
 			out.println("</script>");
 			out.println(s);
-			rd.include(request, response);
+			if (request.getParameter("dynamic") == null) {
+				rd.include(request, response);
+			} else {
+				request.setAttribute("succes", s);
+				request.setAttribute("actionList", getMap(length, request));
+				//System.out.println(getMap(length, request).entrySet());
+				rd.forward(request, response);
+			}
 		} else {
-			System.out.println("PANIEK PANIEK PANIEK ER IS IETS OF IEMAND FOUT BEZIGN OMG OMG OMG ABORT ABORT ABORT");
+			//System.out.println("PANIEK PANIEK PANIEK ER IS IETS OF IEMAND FOUT BEZIGN OMG OMG OMG ABORT ABORT ABORT");
 		}
-		
-		
-		
+
+
+
 		//sresponse.sendRedirect(response.encodeURL(request.getHeader("Referer")));
 	}
+	
+	public Map<Integer, String> getMap(int length, HttpServletRequest request) {
+		Map<Integer, String> map = new TreeMap<Integer, String>();
+		for(int i = 1; i <= length; i++) {
+			map.put(Integer.parseInt(request.getParameter("key" + i)), request.getParameter("value" + i));
+		}
+		return map;
+	}
+
 }

@@ -438,9 +438,9 @@ public class GPIO {
 	
 	public static String getSucces() {
 		if(getIntInput() == 0) {
-			return stringToASCII("Failure: either what you are trying to do is impossible or something else we. We suggest you try, try, try again (or give up we don't judge ;) )");
+			return "Failure: either what you are trying to do is impossible or something else we. We suggest you try, try, try again (or give up we do not judge ;)";
 		} else if (getIntInput() == 255) {
-			return stringToASCII("Succes!");
+			return "Succes!";
 		} else {
 			return Arrays.toString(intToBool(getIntInput())) + "Something happened but we are not sure what. Might be a fault on our side might be polar bears who knows.";
 		}

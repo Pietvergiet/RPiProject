@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import Gpio.GPIO;
 
 
 public class Validate {
@@ -31,8 +30,8 @@ public class Validate {
 			e1.printStackTrace();
 		}
 		boolean ok = false;
-		System.out.println(pass + " -- " + encryptedString);
-		System.out.println(cit + " -- " + passw);
+		//System.out.println(pass + " -- " + encryptedString);
+		//System.out.println(cit + " -- " + passw);
 		if (encryptedString.equals(passw)) {
 			ok = true;
 		}
