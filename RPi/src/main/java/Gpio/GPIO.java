@@ -1,5 +1,6 @@
 package Gpio;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -341,13 +342,16 @@ public class GPIO {
 			int nr;
 			waitAck_Stable();
 			if (checkZByte()) {
+				sendAck();
 				return (TreeMap<Integer, String>) list;
 			}
 			nr = getIntInput();
 			sendAck();
 			for (int j = 0; j < 16; j++) {
 				waitAck_Stable();
-				name.append(getCharInput());
+				if (getIntInput() != 0) {
+					name.append(getCharInput());
+				}
 				sendAck();
 			}
 			list.put(nr, stringToASCII(name.toString()));
@@ -364,10 +368,11 @@ public class GPIO {
 			int id;
 			StringBuilder name = new StringBuilder();
 			waitAck_Stable();
-			if(checkZByte()) {
+			nr = getIntInput();
+			if(nr == 0) {
+				sendAck();
 				return (TreeMap<Integer, TreeMap<Integer, String>>) list;
 			}
-			nr = getIntInput();
 			sendAck();
 			waitAck_Stable();
 			id = getIntInput();
@@ -391,6 +396,7 @@ public class GPIO {
 			StringBuilder name = new StringBuilder();
 			waitAck_Stable();
 			if (checkZByte()) {
+				sendAck();
 				return (TreeMap<Integer, String[]>) list;
 			}
 			alID = getIntInput();
@@ -414,13 +420,14 @@ public class GPIO {
 	
 	public static boolean[] getBoolInput() {
 		boolean[] input = new boolean[8];
-		for (int i = 10; i > 2; i--) {
-			input[10-i] = pin[i].isHigh();
+		for (int i = 3; i < 11; i++) {
+			input[i-3] = pin[i].isHigh();
 		}
 		return input;
 	}
 	
 	public static int getIntInput() {
+		waitShort();
 		boolean[] input = getBoolInput();
 		int n = 0;
 		for (int i = 0; i < 8; ++i) {
@@ -431,11 +438,11 @@ public class GPIO {
 	
 	public static String getSucces() {
 		if(getIntInput() == 0) {
-			return "Failure: either what you are trying to do is impossible or something else we. We suggest you try, try, try again (or give up we don't judge ;) )";
+			return stringToASCII("Failure: either what you are trying to do is impossible or something else we. We suggest you try, try, try again (or give up we don't judge ;) )");
 		} else if (getIntInput() == 255) {
-			return "Succes!";
+			return stringToASCII("Succes!");
 		} else {
-			return "Something happened but we are not sure what. Might be a fault on our side might be polar bears who knows.";
+			return Arrays.toString(intToBool(getIntInput())) + "Something happened but we are not sure what. Might be a fault on our side might be polar bears who knows.";
 		}
 	}
 	
@@ -494,7 +501,16 @@ public class GPIO {
 		}
 		return vol.toString();
 	}
-
+	
+	public static void waitShort(){
+	    final long INTERVAL = 50;
+	    long start = System.nanoTime();
+	    long end=0;
+	    do{
+	        end = System.nanoTime();
+	    }while(start + INTERVAL >= end);
+	    System.out.println(end - start);
+	}
 
 
 

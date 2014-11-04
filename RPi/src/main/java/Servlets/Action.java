@@ -23,14 +23,14 @@ public class Action extends HttpServlet{
 		//GPIO.setUnstable_Ack();
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
-			System.out.println(action);
 			GPIO.pSetupSend();
 			GPIO.setAction();
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
-			String devId = request.getParameter("devId");
-			GPIO.sendInts(GPIO.turnStringtoInt(devId));
+			int devId = Integer.parseInt(request.getParameter("devId"));
+			int dId[] = {devId};
+			GPIO.sendInts(dId);
 			GPIO.pSetupRecieve();
 			Map<Integer, String> lijst = GPIO.getList();
 			GPIO.pSetupSend();
@@ -49,8 +49,9 @@ public class Action extends HttpServlet{
 			GPIO.setRemove();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
-			String actId = request.getParameter("actId");
-			GPIO.sendInts(GPIO.turnStringtoInt(actId));
+			int actId = Integer.parseInt(request.getParameter("actId"));
+			int aId[] = {actId};
+			GPIO.sendInts(aId);
 			GPIO.pSetupRecieve();
 			GPIO.waitAck_Stable();
 			String s = GPIO.getSucces();
