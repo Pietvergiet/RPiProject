@@ -53,10 +53,8 @@
 <!-- Body -->
 <div class="container">
 <div class="grid" style="margin-left:2%;margin-top:5%">
-	<form method="post" action="Blink">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT1" style="font-size:280%%; height:200px; width:49%;">
-		<input name="button" class="bg-green bg-hover-lime fg-white" type="submit" value="LET THERE BE LIGHT2" style="font-size:280%; height:200px; width:49%;">
-	</form>
+<img src="http://www.toeters.net/judith.toeters/beeld/welkom.gif" class="img-polaroid">
+</div>
 </div>
 </div>
 </body>
