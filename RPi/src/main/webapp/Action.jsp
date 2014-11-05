@@ -103,7 +103,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Execute an action</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the action <br>that should be executed.<p>
-        					<p><input maxlength="3" sname="actIdexe" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="actIdexe" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Execute" style="font-size:100%; height:45px; width:63%;"></p>
         				</div>
 					</div>
