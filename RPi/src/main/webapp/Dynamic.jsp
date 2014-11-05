@@ -1,6 +1,6 @@
-<% /*if (request.getSession().getAttribute("sessionId") == null) {
+<% if (request.getSession().getAttribute("sessionId") == null) {
 	response.sendRedirect("./Login");
-	}*/%>
+	}%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
@@ -156,7 +156,11 @@
 			if (alarms.size() == 0) {
 				
 			} else {
-	%>
+	%>	
+				Helaas hebben we deze functie niet kunnen implementeren.
+				<br> 
+				Wat u hier ziet is een voorbeeld van hoe het eruit had kunnen zien.
+				<br>
 				<form method="post" action="getAlarm">
 				<input type="hidden" name="url" value="/Dynamic.jsp">
 				<div class="grid">

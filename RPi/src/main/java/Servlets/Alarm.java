@@ -3,6 +3,8 @@ package Servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
+import java.util.TreeMap;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,14 +25,14 @@ public class Alarm extends HttpServlet {
 		GPIO.pSetupSend();*/
 		String action = (String) request.getParameter("button");
 		if (action.contains("List")) {
-			GPIO.setAlarm();
+			/*GPIO.setAlarm();
 			GPIO.setList();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
 			GPIO.pSetupRecieve();
 			Map<Integer, String[]> lijst = GPIO.getAlarmList();
-			GPIO.pSetupSend();
-			/*Map<Integer, String[]> examp = new TreeMap<Integer, String[]>();
+			GPIO.pSetupSend();*/
+			Map<Integer, String[]> examp = new TreeMap<Integer, String[]>();
 			String id = "5";
 			String tijd = "12:30";
 			String name = "uitslapen";
@@ -39,12 +41,12 @@ public class Alarm extends HttpServlet {
 			examp.put(2, arrr);
 			examp.put(3, arrr);
 			examp.put(4, arrr);
-			examp.put(5, arrr);*/
-			request.setAttribute("alarmList", lijst);
+			examp.put(5, arrr);
+			request.setAttribute("alarmList", examp);
 			request.getRequestDispatcher("/Dynamic.jsp").forward(request, response);
 			
 		} else if (action.equals("Add")) {
-			GPIO.setAlarm();
+			/*GPIO.setAlarm();
 			GPIO.setAdd();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
@@ -56,16 +58,16 @@ public class Alarm extends HttpServlet {
 			GPIO.waitAck_Stable();
 			String s = GPIO.getSucces();
 			GPIO.sendAck();
-			GPIO.pSetupSend();
+			GPIO.pSetupSend();*/
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('" + s + "');");
+			out.println("alert('Helaas hebben we deze functie niet kunnen implenmenteren.');");
 			out.println("</script>");
-			out.println(s);
+			out.println("Helaas hebben we deze functie niet kunnen implenmenteren.");
 
 			rd.include(request, response);
 		} else if (action.equals("Remove")) {
-			GPIO.setAlarm();
+			/*GPIO.setAlarm();
 			GPIO.setRemove();
 			GPIO.setStable_Ack();
 			GPIO.waitAck_Stable();
@@ -76,12 +78,12 @@ public class Alarm extends HttpServlet {
 			GPIO.waitAck_Stable();
 			String s = GPIO.getSucces();
 			GPIO.sendAck();
-			GPIO.pSetupSend();
+			GPIO.pSetupSend();*/
 			PrintWriter out= response.getWriter();
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('" + s + "');");
+			out.println("alert('Helaas hebben we deze functie niet kunnen implenmenteren.');");
 			out.println("</script>");
-			out.println(s);
+			out.println("Helaas hebben we deze functie niet kunnen implenmenteren.");
 
 			rd.include(request, response);
 		}

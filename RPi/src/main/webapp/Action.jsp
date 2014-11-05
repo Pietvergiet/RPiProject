@@ -1,6 +1,6 @@
-<% /*if (request.getSession().getAttribute("sessionId") == null) {
+<% if (request.getSession().getAttribute("sessionId") == null) {
 	response.sendRedirect(response.encodeURL("./Login"));
-	}*/%>
+	}%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -62,7 +62,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">List all device actions</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the device.<p>
-        					<p><input name="devId" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="devId" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List" style="font-size:100%; height:45px; width:63%;"></p>
         				</div>
 					</div>
@@ -76,9 +76,9 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Record an action</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the action <br>that should be added.<p>
-        					<p><input name="nActId" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="nActId" type="text" data-state="info"></p>
         					<p>Fill in the name of the action <br>that should be added.<p>
-        					<p><input name="nActNam" type="text" data-state="info"></p>
+        					<p><input maxlength="16" name="nActNam" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Record" style="font-size:100%; height:45px; width:63%;"></p>
         				</div>
 					</div>
@@ -91,7 +91,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove an action</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the action <br>that should be removed.<p>
-        					<p><input name="actId" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="actId" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove" style="font-size:100%; height:45px; width:63%;"></p>
         				</div>
 					</div></div>
@@ -103,7 +103,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Execute an action</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the action <br>that should be executed.<p>
-        					<p><input name="actIdexe" type="text" data-state="info"></p>
+        					<p><input maxlength="3" sname="actIdexe" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Execute" style="font-size:100%; height:45px; width:63%;"></p>
         				</div>
 					</div>

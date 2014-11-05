@@ -1,6 +1,6 @@
-<% /*if (request.getSession().getAttribute("sessionId") == null) {
+<% if (request.getSession().getAttribute("sessionId") == null) {
 	response.sendRedirect(response.encodeURL("./Login"));
-	}*/%>
+	}%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -68,7 +68,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove an alarm</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the alarm that should be removed.<p>
-        					<p><input name="alId" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="alId" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
@@ -81,9 +81,9 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add an alarm</a>
        	 				<div class="content" style="display: none;">
        	 					<p>Fill in the time.<p>
-        					<p><input name="time" type="text" data-state="info"></p>
+        					<p><input maxlength="5" name="time" type="text" data-state="info"></p>
         					<p>Fill in the ID of the sequence that should execute.<p>
-        					<p><input name="seqId" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="seqId" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>

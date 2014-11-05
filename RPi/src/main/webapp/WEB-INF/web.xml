@@ -63,4 +63,7 @@
 		<servlet-name>Devices</servlet-name>
 		<url-pattern>/Devices</url-pattern>
 	</servlet-mapping>
+	<error-page>
+    	<location>/Error</location>
+	</error-page>
 </web-app>

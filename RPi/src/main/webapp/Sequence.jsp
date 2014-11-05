@@ -1,6 +1,6 @@
-<%/* if (request.getSession().getAttribute("sessionId") == null) {
+<%if (request.getSession().getAttribute("sessionId") == null) {
 	response.sendRedirect(response.encodeURL("./Login"));
-	}*/%>
+	}%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -65,7 +65,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">List all actions of a sequence</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the sequence <br>of which you want to know the actions.<p>
-        					<p><input name="seqId" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="seqId" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="List Actions" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
@@ -79,7 +79,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove a sequence</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the sequence <br>that should be removed.<p>
-        					<p><input name="seqIdrem" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="seqIdrem" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
@@ -92,9 +92,9 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove an action</a>
        	 				<div class="content" style="display: none;">
        	 					<p>Fill in the ID of the sequence <br>that should be removed.<p>
-        					<p><input name="seqIdArem" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="seqIdArem" type="text" data-state="info"></p>
         					<p>Fill in the index nr of the action <br>that should be removed from the sequence.<p>
-        					<p><input name="iNr" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="iNr" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove Action" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
@@ -107,7 +107,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add a sequence</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the name of the sequence <br>that should be added.<p>
-        					<p><input name="seqIdadd" type="text" data-state="info"></p>
+        					<p><input maxlength="16" name="seqIdadd" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
@@ -119,15 +119,14 @@
 					<div class="accordion-frame" style="font-size:150%;">
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add an action to sequence</a>
        	 				<div class="content" style="display: none;">
-       	 					<p>Insert Delay Time</p>
-       	 					<p><input name="delay" type="checkbox" ></p>
-       	 					<p><input name="delayTime" type="text"></p>
+       	 					<p>Insert Delay Time: <input name="delay" type="checkbox" ></p>
+       	 					<p>Delay time: <input maxlength="3" name="delayTime" type="text"></p>
        	 					<p>Fill in the ID of the sequence <br>that an action should be added to.</p>
-        					<p><input name="seqIdAadd" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="seqIdAadd" type="text" data-state="info"></p>
         					<p>Fill in the index nr of the action <br>that should be added.<p>
-        					<p><input name="iNrA" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="iNrA" type="text" data-state="info"></p>
         					<p>Fill in the ID of the action <br>that should be added.<p>
-        					<p><input name="actIDadd" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="actIDadd" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add Action" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
@@ -140,7 +139,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Execute a sequence</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the sequence <br>that should be executed.<p>
-        					<p><input name="seqExe" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="seqExe" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Execute" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>

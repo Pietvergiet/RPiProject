@@ -1,6 +1,6 @@
-<% /* if (request.getSession().getAttribute("sessionId") == null) {
+<% if (request.getSession().getAttribute("sessionId") == null) {
 	response.sendRedirect(response.encodeURL("./Login"));
-	}*/ %>
+	} %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -65,7 +65,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Remove a device</a>
        	 				<div class="content" style="display: none;">
         					<p>Fill in the ID of the device <br>that should be removed.<p>
-        					<p><input name="remDev" type="text" data-state="info"></p>
+        					<p><input maxlength="3" name="remDev" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Remove" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
@@ -78,7 +78,7 @@
     					<a class="heading bg-lightBlue fg-white collapsed" href="#">Add a device</a>
        	 				<div class="content" style="display: none;">
        	 					<p>Fill in the name of the device <br>that should be added.<p>
-        					<p><input name="addDev" type="text" data-state="info"></p>
+        					<p><input maxlength="16" name="addDev" type="text" data-state="info"></p>
         					<p><input name="button" class="bg-lightBlue bg-hover-darkBlue fg-white" type="submit" value="Add" style="font-size:100%; height:50px; width:63%;"></p>
         				</div>
 					</div>
